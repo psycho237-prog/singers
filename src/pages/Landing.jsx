@@ -14,7 +14,7 @@ const Landing = () => {
             description: "The continent's top talent awaits your vote"
         },
         {
-            image: "https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=1000&auto=format&fit=crop",
+            image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop",
             tag: "Featured",
             title: "Rhythm of Africa",
             description: "Support your favorite artists today"
