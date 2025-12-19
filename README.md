@@ -3,12 +3,14 @@
 A frontend-only React website for an African Singing Awards voting platform.
 
 ## Features
-- **Landing Page**: "Amplify The Rhythm" hero section.
-- **Login/Sign Up**: UI for authentication.
-- **Categories**: Award categories grid.
-- **Nominees**: Voting list with tabs.
-- **Profile**: Artist stats and bio.
-- **Vote Success**: Confirmation animation.
+- **Landing Page**: "Amplify The Rhythm" hero section with auto-scrolling featured artists.
+- **Categories**: 12 diverse award categories with dynamic filtering.
+- **Nominees**: Real-time voting system with category-specific rankings.
+- **Artist Profiles**: Detailed stats, biographies, and top hits.
+- **Admin Dashboard**: Secure monitoring of votes, revenue, and live transactions.
+- **Real-time Results**: Dynamic standings and total vote count updates.
+- **Payment Integration**: Prepared for MTN Mobile Money and Orange Money CM.
+- **Persistence**: Local storage support for votes and transactions.
 
 ## Tech Stack
 - React (Vite)

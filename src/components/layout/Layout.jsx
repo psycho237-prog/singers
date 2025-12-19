@@ -29,7 +29,7 @@ const Layout = () => {
 
             {/* Bottom Navigation */}
             <AnimatePresence>
-                {isNavbarVisible && location.pathname !== '/' && (
+                {isNavbarVisible && location.pathname !== '/' && location.pathname !== '/admin-192025' && (
                     <motion.nav
                         initial={{ y: 100 }}
                         animate={{ y: 0 }}

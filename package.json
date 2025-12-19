@@ -1,5 +1,6 @@
 {
   "name": "african-singing-awards",
+  "description": "A premium, mobile-first voting platform for the African Singing Awards 2026, featuring real-time results, secure admin dashboard, and integrated payment simulations.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
