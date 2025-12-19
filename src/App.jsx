@@ -8,6 +8,7 @@ import Nominees from './pages/Nominees';
 import Profile from './pages/Profile';
 import Results from './pages/Results';
 import VoteSuccess from './pages/VoteSuccess';
+import Admin from './pages/Admin';
 import { AnimatePresence } from 'framer-motion';
 import { VoteProvider } from './context/VoteContext';
 
@@ -24,6 +25,7 @@ function AnimatedRoutes() {
                     <Route path="profile" element={<Profile />} />
                     <Route path="results" element={<Results />} />
                     <Route path="vote-success" element={<VoteSuccess />} />
+                    <Route path="admin-192025" element={<Admin />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
             </Routes>

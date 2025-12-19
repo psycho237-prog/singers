@@ -233,7 +233,7 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                 onClick={async () => {
                                     const result = await processPayment(paymentMethod, phoneNumber, totalPrice);
                                     if (result.success) {
-                                        incrementVote(nominee.id, voteCount);
+                                        incrementVote(nominee.id, voteCount, totalPrice, paymentMethod);
                                         handleClose();
                                         navigate('/vote-success');
                                     } else {

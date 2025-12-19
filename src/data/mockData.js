@@ -383,6 +383,6 @@ export const standings = [
 ];
 
 export const winners = [
-    { id: 1, category: 'Best Newcomer', name: 'Ayra Starr', year: '2023', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop' },
-    { id: 2, category: 'Song of the Year', name: 'Rema', year: '2023', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop' },
+    { id: 1, category: 'Best Newcomer', name: 'Ayra Starr', year: '2025', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop' },
+    { id: 2, category: 'Song of the Year', name: 'Rema', year: '2025', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop' },
 ];

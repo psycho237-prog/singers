@@ -70,7 +70,7 @@ const Nominees = () => {
                 <div className="mb-8">
                     <h2 className="text-3xl font-bold mb-2">
                         Cast your vote for the <br />
-                        <span className="text-secondary">2024 winner.</span>
+                        <span className="text-secondary">2026 winner.</span>
                     </h2>
                     <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest">
                         Voting closes in 3 days. You have 5 votes remaining today.

@@ -10,7 +10,7 @@ import SearchOverlay from '../components/SearchOverlay';
 // Local categories removed in favor of centralized mockData.js
 
 const Categories = () => {
-    const { categories } = useVotes();
+    const { categories, nominees } = useVotes();
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [showAll, setShowAll] = useState(false);
 
@@ -57,7 +57,7 @@ const Categories = () => {
             <SearchOverlay
                 isOpen={isSearchOpen}
                 onClose={() => setIsSearchOpen(false)}
-                data={categories}
+                data={[...categories, ...nominees]}
             />
 
             <div className="px-6 space-y-6">

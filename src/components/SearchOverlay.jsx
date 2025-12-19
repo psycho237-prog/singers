@@ -70,7 +70,7 @@ const SearchOverlay = ({ isOpen, onClose, data = [] }) => {
                                         transition={{ delay: index * 0.05 }}
                                     >
                                         <Link
-                                            to={result.title ? "/nominees" : `/profile?nomineeId=${result.id}`}
+                                            to={result.title ? `/nominees?categoryId=${result.id}` : `/profile?nomineeId=${result.id}`}
                                             onClick={onClose}
                                             className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group"
                                         >

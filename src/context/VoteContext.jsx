@@ -12,20 +12,60 @@ export const useVotes = () => {
 };
 
 export const VoteProvider = ({ children }) => {
-    const [nominees, setNominees] = useState(initialNominees);
+    const [nominees, setNominees] = useState(() => {
+        const saved = localStorage.getItem('nominees');
+        return saved ? JSON.parse(saved) : initialNominees;
+    });
     const [categories, setCategories] = useState(initialCategories);
+    const [transactions, setTransactions] = useState(() => {
+        const saved = localStorage.getItem('transactions');
+        return saved ? JSON.parse(saved) : [];
+    });
+    const [totalRevenue, setTotalRevenue] = useState(() => {
+        const saved = localStorage.getItem('totalRevenue');
+        return saved ? JSON.parse(saved) : 0;
+    });
 
-    const incrementVote = (nomineeId, count = 1) => {
+    useEffect(() => {
+        localStorage.setItem('nominees', JSON.stringify(nominees));
+    }, [nominees]);
+
+    useEffect(() => {
+        localStorage.setItem('transactions', JSON.stringify(transactions));
+    }, [transactions]);
+
+    useEffect(() => {
+        localStorage.setItem('totalRevenue', JSON.stringify(totalRevenue));
+    }, [totalRevenue]);
+
+    const incrementVote = (nomineeId, count = 1, amount = 0, method = 'MOMO') => {
+        const nominee = nominees.find(n => n.id === nomineeId);
+        if (!nominee) return;
+
+        // Record Transaction
+        const newTransaction = {
+            id: Date.now(),
+            nomineeId,
+            nomineeName: nominee.name,
+            votes: count,
+            amount: amount,
+            method: method,
+            timestamp: new Date().toISOString()
+        };
+
+        setTransactions(prev => [newTransaction, ...prev]);
+        setTotalRevenue(prev => prev + amount);
+
         setNominees(prevNominees =>
-            prevNominees.map(nominee => {
-                if (nominee.id === nomineeId) {
+            prevNominees.map(n => {
+                if (n.id === nomineeId) {
                     // Convert '12.4k' to number, increment, and convert back
-                    const currentVotes = parseFloat(nominee.votes.replace('k', '')) * (nominee.votes.includes('k') ? 1000 : 1);
+                    const currentVotes = parseFloat(n.votes.replace('k', '')) * (n.votes.includes('k') ? 1000 : 1);
                     const newVotes = currentVotes + count;
                     const formattedVotes = newVotes >= 1000 ? `${(newVotes / 1000).toFixed(1)}k` : newVotes.toString();
-                    return { ...nominee, votes: formattedVotes };
+                    return { ...n, votes: formattedVotes };
                 }
-                return nominee;
+                return n;
             })
         );
     };
@@ -64,6 +104,8 @@ export const VoteProvider = ({ children }) => {
     const value = {
         nominees,
         categories,
+        transactions,
+        totalRevenue,
         incrementVote,
         getGlobalRankings,
         getCategoryRankings,

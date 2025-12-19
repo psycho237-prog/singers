@@ -192,7 +192,7 @@ const Results = () => {
                                     <div className="absolute bottom-4 left-4 right-4">
                                         <p className="text-[8px] text-secondary font-bold uppercase tracking-widest mb-1">{getCategoryTitle(winner.categoryId)}</p>
                                         <h4 className="font-bold text-xs mb-1">{winner.name}</h4>
-                                        <p className="text-[8px] text-gray-400 font-bold uppercase tracking-widest">2023 Winner</p>
+                                        <p className="text-[8px] text-gray-400 font-bold uppercase tracking-widest">2025 Winner</p>
                                     </div>
                                 </Card>
                             </motion.div>
