@@ -5,18 +5,9 @@ import Button from '../components/ui/Button';
 import { Trophy, Star, TrendingUp, ChevronLeft, Search, Medal, Crown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SearchOverlay from '../components/SearchOverlay';
+import { standings, winners } from '../data/mockData';
 
-const standings = [
-    { id: 1, name: 'Burna Boy', votes: '45.2k', rank: 1, trend: 'up', image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1000&auto=format&fit=crop' },
-    { id: 2, name: 'Wizkid', votes: '42.8k', rank: 2, trend: 'down', image: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=1000&auto=format&fit=crop' },
-    { id: 3, name: 'Davido', votes: '38.5k', rank: 3, trend: 'up', image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop' },
-    { id: 4, name: 'Tems', votes: '35.1k', rank: 4, trend: 'stable', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop' },
-];
-
-const winners = [
-    { id: 1, category: 'Best Newcomer', name: 'Ayra Starr', year: '2023', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop' },
-    { id: 2, category: 'Song of the Year', name: 'Rema', year: '2023', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop' },
-];
+// Local standings and winners removed in favor of centralized mockData.js
 
 const Results = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);

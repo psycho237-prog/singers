@@ -3,74 +3,10 @@ import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
 import { ChevronLeft, Share2, Play, Pause, Heart, Check, Star, Music, Award } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { nominees } from '../data/mockData';
 import VoteModal from '../components/VoteModal';
 
-const nominees = [
-    {
-        id: 1,
-        name: 'Burna Boy',
-        image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1000&auto=format&fit=crop',
-        genre: 'AFRO-FUSION',
-        country: '🇳🇬 Nigeria',
-        rank: '#1',
-        votes: '45.2k',
-        listeners: '15.4M',
-        bio: 'Damini Ebunoluwa Ogulu, known professionally as Burna Boy, is a Nigerian singer, songwriter and record producer. He rose to stardom in 2012 after releasing "Like to Party".',
-        hits: [
-            { title: 'Last Last', album: 'Love, Damini', duration: '2:52', cover: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Ye', album: 'Outside', duration: '3:51', cover: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=100&auto=format&fit=crop' },
-            { title: 'On the Low', album: 'African Giant', duration: '3:05', cover: 'https://images.unsplash.com/photo-1459749411177-042180ce673c?q=80&w=100&auto=format&fit=crop' },
-        ]
-    },
-    {
-        id: 2,
-        name: 'Wizkid',
-        image: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=1000&auto=format&fit=crop',
-        genre: 'AFROBEATS',
-        country: '🇳🇬 Nigeria',
-        rank: '#2',
-        votes: '42.8k',
-        listeners: '12.1M',
-        bio: 'Ayodeji Ibrahim Balogun, known professionally as Wizkid, is a Nigerian singer and songwriter. He began recording music at the age of 11 and has since become a global icon.',
-        hits: [
-            { title: 'Essence', album: 'Made in Lagos', duration: '4:08', cover: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Ojuelegba', album: 'Ayo', duration: '3:11', cover: 'https://images.unsplash.com/photo-1520529277867-dbf8c5e0b330?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Joro', album: 'Single', duration: '4:22', cover: 'https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=100&auto=format&fit=crop' },
-        ]
-    },
-    {
-        id: 3,
-        name: 'Davido',
-        image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop',
-        genre: 'AFRO-POP',
-        country: '🇳🇬 Nigeria',
-        rank: '#3',
-        votes: '38.5k',
-        listeners: '10.8M',
-        bio: 'David Adedeji Adeleke, who is better known as Davido, is an American-born Nigerian singer, songwriter and record producer. He is one of the most influential artists in Africa.',
-        hits: [
-            { title: 'Unavailable', album: 'Timeless', duration: '2:50', cover: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Fall', album: 'A Good Time', duration: '4:00', cover: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=100&auto=format&fit=crop' },
-            { title: 'If', album: 'A Good Time', duration: '3:57', cover: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=100&auto=format&fit=crop' },
-        ]
-    },
-    {
-        id: 4,
-        name: 'Tems',
-        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop',
-        genre: 'ALTÉ / R&B',
-        country: '🇳🇬 Nigeria',
-        rank: '#4',
-        votes: '35.1k',
-        listeners: '18.2M',
-        bio: 'Temilade Openiyi, known professionally as Tems, is a Nigerian singer, songwriter and record producer. She rose to prominence after being featured on Wizkid\'s 2020 single "Essence".',
-        hits: [
-            { title: 'Free Mind', album: 'For Broken Ears', duration: '4:07', cover: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Higher', album: 'For Broken Ears', duration: '3:16', cover: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Me & U', album: 'Single', duration: '3:12', cover: 'https://images.unsplash.com/photo-1520529277867-dbf8c5e0b330?q=80&w=100&auto=format&fit=crop' },
-        ]
-    },
-];
+// Local nominees removed in favor of centralized mockData.js
 
 const Profile = () => {
     const [isVoteModalOpen, setIsVoteModalOpen] = useState(false);

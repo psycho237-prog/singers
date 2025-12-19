@@ -5,54 +5,24 @@ import Button from '../components/ui/Button';
 import { ChevronLeft, Star, Mic2, Share2, Check, LayoutGrid, User } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import VoteModal from '../components/VoteModal';
+import { nominees as allNominees, categories } from '../data/mockData';
 
-const nominees = [
-    {
-        id: 1,
-        name: 'Burna Boy',
-        song: 'LAST LAST',
-        votes: '12.4k',
-        image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1000&auto=format&fit=crop',
-        tag: 'Top Contender',
-        description: 'The African Giant delivers a heartbreak anthem that conquered global charts with Afro-fusion.'
-    },
-    {
-        id: 2,
-        name: 'Wizkid',
-        song: 'ESSENCE',
-        votes: '10.5k',
-        image: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=1000&auto=format&fit=crop',
-        description: 'Smooth soulful vibes that define the modern Afrobeat sound. A global sensation.'
-    },
-    {
-        id: 3,
-        name: 'Davido',
-        song: 'UNAVAILABLE',
-        votes: '9.8k',
-        image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop',
-        description: 'High-energy club banger that showcases the king of modern Afropop at his best.'
-    },
-    {
-        id: 4,
-        name: 'Tems',
-        song: 'FREE MIND',
-        votes: '8.2k',
-        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop',
-        description: 'Ethereal vocals and deeply personal lyrics from the leading voice of the new generation.'
-    },
-];
+// Local nominees removed in favor of centralized mockData.js
 
 const Nominees = () => {
     const [activeTab, setActiveTab] = useState('All');
     const [isVoteModalOpen, setIsVoteModalOpen] = useState(false);
     const [selectedNominee, setSelectedNominee] = useState(null);
     const [searchParams] = useSearchParams();
+    const categoryId = parseInt(searchParams.get('categoryId')) || 1;
+    const category = categories.find(c => c.id === categoryId) || categories[0];
+    const filteredNominees = allNominees.filter(n => n.categoryId === categoryId);
     const [copiedId, setCopiedId] = useState(null);
 
     useEffect(() => {
         const nomineeId = searchParams.get('nomineeId');
         if (nomineeId) {
-            const nominee = nominees.find(n => n.id === parseInt(nomineeId));
+            const nominee = allNominees.find(n => n.id === parseInt(nomineeId));
             if (nominee) {
                 setSelectedNominee(nominee);
                 setIsVoteModalOpen(true);
@@ -89,7 +59,7 @@ const Nominees = () => {
                         <ChevronLeft size={24} />
                     </Button>
                 </Link>
-                <h2 className="text-sm font-bold tracking-widest uppercase">Best Male Vocalist</h2>
+                <h2 className="text-sm font-bold tracking-widest uppercase">{category.title}</h2>
                 <Button variant="ghost" className="p-2 rounded-full hover:bg-white/5">
                     <LayoutGrid size={20} />
                 </Button>
@@ -113,8 +83,8 @@ const Nominees = () => {
                             key={tab}
                             onClick={() => setActiveTab(tab)}
                             className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap ${activeTab === tab
-                                    ? 'bg-secondary text-white shadow-[0_0_15px_rgba(217,70,239,0.4)]'
-                                    : 'bg-white/5 text-gray-400 hover:bg-white/10'
+                                ? 'bg-secondary text-white shadow-[0_0_15px_rgba(217,70,239,0.4)]'
+                                : 'bg-white/5 text-gray-400 hover:bg-white/10'
                                 }`}
                         >
                             {tab}
@@ -124,7 +94,7 @@ const Nominees = () => {
 
                 {/* Nominee List */}
                 <div className="space-y-8">
-                    {nominees.map((nominee, index) => (
+                    {filteredNominees.map((nominee, index) => (
                         <motion.div
                             key={nominee.id}
                             initial={{ opacity: 0, y: 20 }}
