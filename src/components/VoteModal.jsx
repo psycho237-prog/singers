@@ -234,8 +234,7 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                     const result = await processPayment(paymentMethod, phoneNumber, totalPrice);
                                     if (result.success) {
                                         incrementVote(nominee.id, voteCount, totalPrice, paymentMethod);
-                                        handleClose();
-                                        navigate('/vote-success');
+                                        navigate('/vote-success', { state: { nominee, voteCount } });
                                     } else {
                                         alert('Payment failed. Please try again.');
                                     }

@@ -1,9 +1,28 @@
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
 import { Check, Share2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useVotes } from '../context/VoteContext';
+import { useEffect } from 'react';
 
 const VoteSuccess = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { categories } = useVotes();
+    const { nominee, voteCount } = location.state || {};
+
+    useEffect(() => {
+        if (!nominee) {
+            navigate('/');
+        }
+    }, [nominee, navigate]);
+
+    if (!nominee) return null;
+
+    const getCategoryTitle = (id) => {
+        return categories.find(c => c.id === id)?.title || 'Nominee';
+    };
+
     return (
         <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
             {/* Confetti / Glow */}
@@ -35,7 +54,7 @@ const VoteSuccess = () => {
                 transition={{ delay: 0.3 }}
                 className="text-gray-400 mb-12 max-w-xs"
             >
-                Thanks for supporting African talent. Your vote has been successfully cast.
+                Thanks for supporting African talent. Your {voteCount} {voteCount > 1 ? 'votes have' : 'vote has'} been successfully cast.
             </motion.p>
 
             {/* Voted Card Preview */}
@@ -46,12 +65,12 @@ const VoteSuccess = () => {
                 className="w-full max-w-xs bg-white/5 rounded-3xl p-4 border border-white/10 mb-12"
             >
                 <img
-                    src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1000&auto=format&fit=crop"
-                    alt="Artist"
+                    src={nominee.image}
+                    alt={nominee.name}
                     className="w-full h-48 object-cover rounded-2xl mb-4"
                 />
-                <h3 className="text-xl font-bold">Amara Okeke</h3>
-                <p className="text-sm text-gray-400">Best Female Vocalist Nominee</p>
+                <h3 className="text-xl font-bold">{nominee.name}</h3>
+                <p className="text-sm text-gray-400">{getCategoryTitle(nominee.categoryId)} Nominee</p>
             </motion.div>
 
             <motion.div
