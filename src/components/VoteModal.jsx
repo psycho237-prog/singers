@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Share2, Minus, Plus, Lock, Smartphone, CreditCard, Check } from 'lucide-react';
+import { X, Share2, Minus, Plus, Lock, Smartphone, CreditCard, Check, AlertCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Button from './ui/Button';
 import { useVotes } from '../context/VoteContext';
@@ -11,8 +11,11 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [isCopied, setIsCopied] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [isPolling, setIsPolling] = useState(false);
+    const [pollingMessage, setPollingMessage] = useState('');
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const { incrementVote } = useVotes();
+    const { incrementVote, processVote, useBackend } = useVotes();
 
     // Payment API Configuration (Future Integration)
     const PAYMENT_CONFIG = {
@@ -226,17 +229,83 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                 </div>
                             </div>
 
+                            {/* Error Display */}
+
+
                             {/* Submit Button */}
                             <Button
                                 className="w-full py-4 text-sm font-bold rounded-2xl shadow-lg shadow-secondary/20 mb-4 flex items-center justify-center gap-2"
-                                disabled={isLoading || phoneNumber.length < 9}
+                                disabled={isLoading || isPolling}
                                 onClick={async () => {
-                                    const result = await processPayment(paymentMethod, phoneNumber, totalPrice);
-                                    if (result.success) {
-                                        incrementVote(nominee.id, voteCount, totalPrice, paymentMethod);
-                                        navigate('/vote-success', { state: { nominee, voteCount } });
-                                    } else {
-                                        alert('Payment failed. Please try again.');
+                                    setIsLoading(true);
+                                    setError(null);
+                                    setPollingMessage('');
+                                    try {
+                                        if (useBackend && processVote) {
+                                            // 1. Initiate Payment
+                                            const result = await processVote(nominee.id, voteCount, phoneNumber, paymentMethod);
+
+                                            // 2. Check if initiation was successful
+                                            if (result.success) {
+                                                // If status is pending (Monetbil), start polling
+                                                if (result.status === 'pending') {
+                                                    setIsLoading(false);
+                                                    setIsPolling(true);
+                                                    setPollingMessage(result.message || 'Check your phone to confirm payment.');
+
+                                                    // Poll for status every 3 seconds
+                                                    const pollInterval = setInterval(async () => {
+                                                        try {
+                                                            const statusResult = await api.checkPaymentStatus(result.transactionId || result.paymentId);
+                                                            console.log('Payment status:', statusResult.status);
+
+                                                            if (statusResult.status === 'success') {
+                                                                clearInterval(pollInterval);
+                                                                setIsPolling(false);
+                                                                navigate('/vote-success', { state: { nominee, voteCount } });
+                                                            } else if (statusResult.status === 'failed') {
+                                                                clearInterval(pollInterval);
+                                                                setIsPolling(false);
+                                                                setError(statusResult.error || 'Payment failed. Please try again.');
+                                                            }
+                                                            // If 'pending', continue polling
+                                                        } catch (e) {
+                                                            console.error('Polling error:', e);
+                                                        }
+                                                    }, 3000);
+
+                                                    // Timeout after 2 minutes
+                                                    setTimeout(() => {
+                                                        clearInterval(pollInterval);
+                                                        if (isPolling) {
+                                                            setIsPolling(false);
+                                                            setError('Payment timeout. Please check your messages.');
+                                                        }
+                                                    }, 120000);
+                                                } else {
+                                                    // Immediate success (Mock mode)
+                                                    navigate('/vote-success', { state: { nominee, voteCount } });
+                                                }
+                                            } else {
+                                                // Initiation failed
+                                                setError(result.error || result.message || 'Payment failed. Please try again.');
+                                                setIsLoading(false);
+                                            }
+                                        } else {
+                                            // Fallback to local mode
+                                            const result = await processPayment(paymentMethod, phoneNumber, totalPrice);
+                                            if (result.success) {
+                                                incrementVote(nominee.id, voteCount, totalPrice, paymentMethod);
+                                                navigate('/vote-success', { state: { nominee, voteCount } });
+                                            } else {
+                                                setError('Payment failed. Please try again.');
+                                                setIsLoading(false);
+                                            }
+                                        }
+                                    } catch (err) {
+                                        console.error('Payment error:', err);
+                                        setError(err.message || 'Transaction error. Please check your balance and try again.');
+                                        setIsLoading(false);
                                     }
                                 }}
                             >
@@ -245,10 +314,34 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                         <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                                         PROCESSING...
                                     </>
+                                ) : isPolling ? (
+                                    <>
+                                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                        CHECK YOUR PHONE...
+                                    </>
                                 ) : (
                                     `VOTE NOW • ${totalPrice} XAF`
                                 )}
                             </Button>
+
+
+
+                            {isPolling && pollingMessage && (
+                                <div className="text-center mb-4 animate-pulse">
+                                    <p className="text-xs text-yellow-500 uppercase tracking-wider mb-1">
+                                        {pollingMessage}
+                                    </p>
+                                    <p className="text-[10px] text-white/50 font-mono">
+                                        Processing {paymentMethod} • {phoneNumber} • {totalPrice} XAF
+                                    </p>
+                                </div>
+                            )}
+
+                            {error && (
+                                <p className="text-center text-xs text-red-500 font-bold mb-4 animate-pulse uppercase tracking-wider">
+                                    {error}
+                                </p>
+                            )}
 
                             <div className="flex items-center justify-center gap-2 text-gray-500 text-[10px] font-bold uppercase tracking-widest">
                                 <Lock size={12} /> Secure Payment

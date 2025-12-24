@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { nominees as initialNominees, categories as initialCategories } from '../data/mockData';
+import api from '../services/api';
 
 const VoteContext = createContext();
 
@@ -12,37 +13,140 @@ export const useVotes = () => {
 };
 
 export const VoteProvider = ({ children }) => {
-    const [nominees, setNominees] = useState(() => {
-        const saved = localStorage.getItem('nominees');
-        return saved ? JSON.parse(saved) : initialNominees;
-    });
+    const [nominees, setNominees] = useState(initialNominees);
     const [categories, setCategories] = useState(initialCategories);
-    const [transactions, setTransactions] = useState(() => {
-        const saved = localStorage.getItem('transactions');
-        return saved ? JSON.parse(saved) : [];
-    });
-    const [totalRevenue, setTotalRevenue] = useState(() => {
-        const saved = localStorage.getItem('totalRevenue');
-        return saved ? JSON.parse(saved) : 0;
-    });
+    const [transactions, setTransactions] = useState([]);
+    const [totalRevenue, setTotalRevenue] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [useBackend, setUseBackend] = useState(true);
+
+    // Fetch data from backend on mount
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setIsLoading(true);
+                setError(null);
+
+                // Try to fetch from backend
+                const [categoriesData, nomineesData] = await Promise.all([
+                    api.getCategories(),
+                    api.getNominees(),
+                ]);
+
+                // Transform backend data to match frontend format
+                const transformedCategories = categoriesData.map(c => ({
+                    id: c.id,
+                    title: c.title,
+                    nominees: c.nominees_count,
+                    image: c.image_url,
+                    featured: c.featured,
+                }));
+
+                const transformedNominees = nomineesData.map(n => ({
+                    id: n.id,
+                    categoryId: n.category_id,
+                    name: n.name,
+                    song: n.song,
+                    votes: n.votes_display || n.votes?.toString() || '0',
+                    image: n.image_url,
+                    tag: n.tag,
+                    description: n.description,
+                    bio: n.bio,
+                    genre: n.genre,
+                    country: n.country,
+                    rank: n.rank,
+                    listeners: n.listeners,
+                    hits: n.hits || [],
+                }));
+
+                setCategories(transformedCategories);
+                setNominees(transformedNominees);
+                setUseBackend(true);
+                console.log('✅ Connected to backend API');
+            } catch (err) {
+                console.warn('⚠️ Backend not available, using local data:', err.message);
+                setUseBackend(false);
+                // Fall back to localStorage if available
+                const savedNominees = localStorage.getItem('nominees');
+                const savedTransactions = localStorage.getItem('transactions');
+                const savedRevenue = localStorage.getItem('totalRevenue');
+
+                if (savedNominees) setNominees(JSON.parse(savedNominees));
+                if (savedTransactions) setTransactions(JSON.parse(savedTransactions));
+                if (savedRevenue) setTotalRevenue(JSON.parse(savedRevenue));
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    // Save to localStorage as backup when not using backend
+    useEffect(() => {
+        if (!useBackend) {
+            localStorage.setItem('nominees', JSON.stringify(nominees));
+        }
+    }, [nominees, useBackend]);
 
     useEffect(() => {
-        localStorage.setItem('nominees', JSON.stringify(nominees));
-    }, [nominees]);
+        if (!useBackend) {
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+        }
+    }, [transactions, useBackend]);
 
     useEffect(() => {
-        localStorage.setItem('transactions', JSON.stringify(transactions));
-    }, [transactions]);
+        if (!useBackend) {
+            localStorage.setItem('totalRevenue', JSON.stringify(totalRevenue));
+        }
+    }, [totalRevenue, useBackend]);
 
-    useEffect(() => {
-        localStorage.setItem('totalRevenue', JSON.stringify(totalRevenue));
-    }, [totalRevenue]);
+    // Process payment and vote via backend
+    const processVote = useCallback(async (nomineeId, count, phoneNumber, paymentMethod) => {
+        try {
+            const result = await api.initiatePayment({
+                nomineeId,
+                voteCount: count,
+                phoneNumber,
+                paymentMethod,
+            });
 
-    const incrementVote = (nomineeId, count = 1, amount = 0, method = 'MOMO') => {
+            if (result.success) {
+                // Refresh nominees to get updated vote counts
+                const nomineesData = await api.getNominees();
+                const transformedNominees = nomineesData.map(n => ({
+                    id: n.id,
+                    categoryId: n.category_id,
+                    name: n.name,
+                    song: n.song,
+                    votes: n.votes_display || n.votes?.toString() || '0',
+                    image: n.image_url,
+                    tag: n.tag,
+                    description: n.description,
+                    bio: n.bio,
+                    genre: n.genre,
+                    country: n.country,
+                    rank: n.rank,
+                    listeners: n.listeners,
+                    hits: n.hits || [],
+                }));
+                setNominees(transformedNominees);
+            }
+
+            return result;
+        } catch (err) {
+            console.error('Payment failed:', err);
+            throw err;
+        }
+    }, []);
+
+    // Legacy incrementVote for backward compatibility (local mode only)
+    const incrementVote = useCallback((nomineeId, count = 1, amount = 0, method = 'MOMO') => {
         const nominee = nominees.find(n => n.id === nomineeId);
         if (!nominee) return;
 
-        // Record Transaction
+        // Record Transaction locally
         const newTransaction = {
             id: Date.now(),
             nomineeId,
@@ -59,7 +163,6 @@ export const VoteProvider = ({ children }) => {
         setNominees(prevNominees =>
             prevNominees.map(n => {
                 if (n.id === nomineeId) {
-                    // Convert '12.4k' to number, increment, and convert back
                     const currentVotes = parseFloat(n.votes.replace('k', '')) * (n.votes.includes('k') ? 1000 : 1);
                     const newVotes = currentVotes + count;
                     const formattedVotes = newVotes >= 1000 ? `${(newVotes / 1000).toFixed(1)}k` : newVotes.toString();
@@ -68,17 +171,45 @@ export const VoteProvider = ({ children }) => {
                 return n;
             })
         );
-    };
+    }, [nominees]);
 
-    const getGlobalRankings = () => {
+    // Refetch data
+    const refetch = useCallback(async () => {
+        if (!useBackend) return;
+
+        try {
+            const nomineesData = await api.getNominees();
+            const transformedNominees = nomineesData.map(n => ({
+                id: n.id,
+                categoryId: n.category_id,
+                name: n.name,
+                song: n.song,
+                votes: n.votes_display || n.votes?.toString() || '0',
+                image: n.image_url,
+                tag: n.tag,
+                description: n.description,
+                bio: n.bio,
+                genre: n.genre,
+                country: n.country,
+                rank: n.rank,
+                listeners: n.listeners,
+                hits: n.hits || [],
+            }));
+            setNominees(transformedNominees);
+        } catch (err) {
+            console.error('Refetch failed:', err);
+        }
+    }, [useBackend]);
+
+    const getGlobalRankings = useCallback(() => {
         return [...nominees].sort((a, b) => {
             const votesA = parseFloat(a.votes.replace('k', '')) * (a.votes.includes('k') ? 1000 : 1);
             const votesB = parseFloat(b.votes.replace('k', '')) * (b.votes.includes('k') ? 1000 : 1);
             return votesB - votesA;
         });
-    };
+    }, [nominees]);
 
-    const getCategoryRankings = (categoryId) => {
+    const getCategoryRankings = useCallback((categoryId) => {
         return nominees
             .filter(n => n.categoryId === categoryId)
             .sort((a, b) => {
@@ -86,9 +217,9 @@ export const VoteProvider = ({ children }) => {
                 const votesB = parseFloat(b.votes.replace('k', '')) * (b.votes.includes('k') ? 1000 : 1);
                 return votesB - votesA;
             });
-    };
+    }, [nominees]);
 
-    const getTotalVotes = () => {
+    const getTotalVotes = useCallback(() => {
         const total = nominees.reduce((acc, nominee) => {
             const votes = parseFloat(nominee.votes.replace('k', '')) * (nominee.votes.includes('k') ? 1000 : 1);
             return acc + votes;
@@ -99,14 +230,19 @@ export const VoteProvider = ({ children }) => {
             : total >= 1000
                 ? `${(total / 1000).toFixed(1)}k+`
                 : total.toString();
-    };
+    }, [nominees]);
 
     const value = {
         nominees,
         categories,
         transactions,
         totalRevenue,
+        isLoading,
+        error,
+        useBackend,
         incrementVote,
+        processVote,
+        refetch,
         getGlobalRankings,
         getCategoryRankings,
         getTotalVotes
