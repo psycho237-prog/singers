@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { getSupabase, mockData } from '../config/database.js';
+import { mockData } from '../config/database.js';
+import { getDb } from '../config/firebase.js';
 
 const router = Router();
 
@@ -17,59 +18,28 @@ router.post('/', async (req, res, next) => {
             });
         }
 
-        const supabase = getSupabase();
+        const db = getDb();
 
-        if (!supabase) {
-            // Mock mode: update in-memory
+        if (!db) {
             const nominee = mockData.nominees.find(n => n.id === parseInt(nomineeId));
-            if (!nominee) {
-                return res.status(404).json({ error: 'Nominee not found' });
-            }
-
+            if (!nominee) return res.status(404).json({ error: 'Nominee not found' });
             nominee.votes += parseInt(voteCount);
-
-            return res.json({
-                success: true,
-                nomineeId,
-                newVoteCount: nominee.votes,
-                message: `Successfully added ${voteCount} vote(s) to ${nominee.name}`,
-            });
+            return res.json({ success: true, nomineeId, newVoteCount: nominee.votes, message: `Successfully added ${voteCount} vote(s)` });
         }
 
-        // Update nominee votes in database
-        const { data: nominee, error: fetchError } = await supabase
-            .from('nominees')
-            .select('votes, name')
-            .eq('id', nomineeId)
-            .single();
+        // Atomic update in Firebase
+        const nomineeRef = db.ref(`nominees/${nomineeId}`);
+        const result = await nomineeRef.child('votes').transaction((current) => (current || 0) + parseInt(voteCount));
 
-        if (fetchError) throw fetchError;
-        if (!nominee) {
-            return res.status(404).json({ error: 'Nominee not found' });
-        }
-
-        const newVotes = nominee.votes + parseInt(voteCount);
-
-        const { error: updateError } = await supabase
-            .from('nominees')
-            .update({ votes: newVotes })
-            .eq('id', nomineeId);
-
-        if (updateError) throw updateError;
-
-        // Update transaction status if transactionId provided
         if (transactionId) {
-            await supabase
-                .from('transactions')
-                .update({ status: 'completed' })
-                .eq('id', transactionId);
+            await db.ref(`transactions/${transactionId}`).update({ status: 'completed' });
         }
 
         res.json({
             success: true,
             nomineeId,
-            newVoteCount: newVotes,
-            message: `Successfully added ${voteCount} vote(s) to ${nominee.name}`,
+            newVoteCount: result.snapshot.val(),
+            message: `Successfully added ${voteCount} vote(s)`,
         });
     } catch (err) {
         next(err);
@@ -79,20 +49,19 @@ router.post('/', async (req, res, next) => {
 // GET /api/votes/total - Get total votes across all nominees
 router.get('/total', async (req, res, next) => {
     try {
-        const supabase = getSupabase();
-
-        if (!supabase) {
+        const db = getDb();
+        if (!db) {
             const total = mockData.nominees.reduce((sum, n) => sum + n.votes, 0);
             return res.json({ total });
         }
 
-        const { data, error } = await supabase
-            .from('nominees')
-            .select('votes');
-
-        if (error) throw error;
-
-        const total = data.reduce((sum, n) => sum + n.votes, 0);
+        const snapshot = await db.ref('nominees').once('value');
+        let total = 0;
+        if (snapshot.exists()) {
+            snapshot.forEach(child => {
+                total += (child.val().votes || 0);
+            });
+        }
         res.json({ total });
     } catch (err) {
         next(err);

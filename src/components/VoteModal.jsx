@@ -262,6 +262,8 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                                             if (statusResult.status === 'success') {
                                                                 clearInterval(pollInterval);
                                                                 setIsPolling(false);
+                                                                // Refresh data before showing success screen
+                                                                if (refetch) await refetch();
                                                                 navigate('/vote-success', { state: { nominee, voteCount } });
                                                             } else if (statusResult.status === 'failed') {
                                                                 clearInterval(pollInterval);

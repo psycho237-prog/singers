@@ -1,25 +1,28 @@
 import { Router } from 'express';
-import { getSupabase, mockData } from '../config/database.js';
+import { mockData } from '../config/database.js';
+import { getDb } from '../config/firebase.js';
 
 const router = Router();
 
 // GET /api/categories - List all categories
 router.get('/', async (req, res, next) => {
     try {
-        const supabase = getSupabase();
-
-        if (!supabase) {
-            // Return mock data if Supabase not configured
+        const db = getDb();
+        if (!db) {
             return res.json(mockData.categories);
         }
 
-        const { data, error } = await supabase
-            .from('categories')
-            .select('*')
-            .order('id');
+        const snapshot = await db.ref('categories').once('value');
+        if (!snapshot.exists()) {
+            return res.json(mockData.categories);
+        }
 
-        if (error) throw error;
-        res.json(data);
+        const categories = [];
+        snapshot.forEach(child => {
+            categories.push({ id: child.key, ...child.val() });
+        });
+
+        res.json(categories);
     } catch (err) {
         next(err);
     }
@@ -29,27 +32,19 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
     try {
         const { id } = req.params;
-        const supabase = getSupabase();
-
-        if (!supabase) {
+        const db = getDb();
+        if (!db) {
             const category = mockData.categories.find(c => c.id === parseInt(id));
-            if (!category) {
-                return res.status(404).json({ error: 'Category not found' });
-            }
+            if (!category) return res.status(404).json({ error: 'Category not found' });
             return res.json(category);
         }
 
-        const { data, error } = await supabase
-            .from('categories')
-            .select('*')
-            .eq('id', id)
-            .single();
-
-        if (error) throw error;
-        if (!data) {
+        const snapshot = await db.ref(`categories/${id}`).once('value');
+        if (!snapshot.exists()) {
             return res.status(404).json({ error: 'Category not found' });
         }
-        res.json(data);
+
+        res.json({ id, ...snapshot.val() });
     } catch (err) {
         next(err);
     }

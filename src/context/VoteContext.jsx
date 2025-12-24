@@ -34,16 +34,7 @@ export const VoteProvider = ({ children }) => {
                     api.getNominees(),
                 ]);
 
-                // Transform backend data to match frontend format
-                const transformedCategories = categoriesData.map(c => ({
-                    id: c.id,
-                    title: c.title,
-                    nominees: c.nominees_count,
-                    image: c.image_url,
-                    featured: c.featured,
-                }));
-
-                const transformedNominees = nomineesData.map(n => ({
+                const transformNominees = (data) => data.map(n => ({
                     id: n.id,
                     categoryId: n.category_id,
                     name: n.name,
@@ -60,8 +51,16 @@ export const VoteProvider = ({ children }) => {
                     hits: n.hits || [],
                 }));
 
+                const transformedCategories = categoriesData.map(c => ({
+                    id: c.id,
+                    title: c.title,
+                    nominees: c.nominees_count,
+                    image: c.image_url,
+                    featured: c.featured,
+                }));
+
                 setCategories(transformedCategories);
-                setNominees(transformedNominees);
+                setNominees(transformNominees(nomineesData));
                 setUseBackend(true);
                 console.log('✅ Connected to backend API');
             } catch (err) {
@@ -112,26 +111,9 @@ export const VoteProvider = ({ children }) => {
                 paymentMethod,
             });
 
-            if (result.success) {
-                // Refresh nominees to get updated vote counts
-                const nomineesData = await api.getNominees();
-                const transformedNominees = nomineesData.map(n => ({
-                    id: n.id,
-                    categoryId: n.category_id,
-                    name: n.name,
-                    song: n.song,
-                    votes: n.votes_display || n.votes?.toString() || '0',
-                    image: n.image_url,
-                    tag: n.tag,
-                    description: n.description,
-                    bio: n.bio,
-                    genre: n.genre,
-                    country: n.country,
-                    rank: n.rank,
-                    listeners: n.listeners,
-                    hits: n.hits || [],
-                }));
-                setNominees(transformedNominees);
+            if (result.success && result.status !== 'pending') {
+                // Refresh nominees only if it's already success (Mock mode)
+                await refetch();
             }
 
             return result;

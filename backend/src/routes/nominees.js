@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { getSupabase, mockData } from '../config/database.js';
+import { mockData } from '../config/database.js';
+import { getDb } from '../config/firebase.js';
 
 const router = Router();
 
@@ -18,39 +19,34 @@ function formatVotes(votes) {
 router.get('/', async (req, res, next) => {
     try {
         const { categoryId } = req.query;
-        const supabase = getSupabase();
+        const db = getDb();
 
-        if (!supabase) {
-            // Return mock data if Supabase not configured
+        if (!db) {
             let nominees = mockData.nominees;
             if (categoryId) {
                 nominees = nominees.filter(n => n.category_id === parseInt(categoryId));
             }
-            // Format votes for display
-            nominees = nominees.map(n => ({
-                ...n,
-                votes_display: formatVotes(n.votes),
-            }));
-            return res.json(nominees);
+            return res.json(nominees.map(n => ({ ...n, votes_display: formatVotes(n.votes) })));
         }
 
-        let query = supabase.from('nominees').select('*');
+        const snapshot = await db.ref('nominees').once('value');
+        let nominees = [];
+        if (snapshot.exists()) {
+            snapshot.forEach(child => {
+                nominees.push({ id: child.key, ...child.val() });
+            });
+        } else {
+            nominees = mockData.nominees;
+        }
 
         if (categoryId) {
-            query = query.eq('category_id', categoryId);
+            nominees = nominees.filter(n => n.category_id === parseInt(categoryId));
         }
 
-        const { data, error } = await query.order('votes', { ascending: false });
-
-        if (error) throw error;
-
-        // Format votes for display
-        const nominees = data.map(n => ({
+        res.json(nominees.map(n => ({
             ...n,
-            votes_display: formatVotes(n.votes),
-        }));
-
-        res.json(nominees);
+            votes_display: formatVotes(n.votes || 0)
+        })).sort((a, b) => (b.votes || 0) - (a.votes || 0)));
     } catch (err) {
         next(err);
     }
@@ -60,33 +56,23 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
     try {
         const { id } = req.params;
-        const supabase = getSupabase();
-
-        if (!supabase) {
+        const db = getDb();
+        if (!db) {
             const nominee = mockData.nominees.find(n => n.id === parseInt(id));
-            if (!nominee) {
-                return res.status(404).json({ error: 'Nominee not found' });
-            }
-            return res.json({
-                ...nominee,
-                votes_display: formatVotes(nominee.votes),
-            });
+            if (!nominee) return res.status(404).json({ error: 'Nominee not found' });
+            return res.json({ ...nominee, votes_display: formatVotes(nominee.votes) });
         }
 
-        const { data, error } = await supabase
-            .from('nominees')
-            .select('*')
-            .eq('id', id)
-            .single();
-
-        if (error) throw error;
-        if (!data) {
+        const snapshot = await db.ref(`nominees/${id}`).once('value');
+        if (!snapshot.exists()) {
             return res.status(404).json({ error: 'Nominee not found' });
         }
 
+        const nominee = snapshot.val();
         res.json({
-            ...data,
-            votes_display: formatVotes(data.votes),
+            id,
+            ...nominee,
+            votes_display: formatVotes(nominee.votes || 0)
         });
     } catch (err) {
         next(err);
@@ -96,31 +82,27 @@ router.get('/:id', async (req, res, next) => {
 // GET /api/nominees/rankings/global - Global rankings
 router.get('/rankings/global', async (req, res, next) => {
     try {
-        const supabase = getSupabase();
-
-        if (!supabase) {
+        const db = getDb();
+        if (!db) {
             const sorted = [...mockData.nominees]
                 .sort((a, b) => b.votes - a.votes)
-                .map((n, i) => ({
-                    ...n,
-                    rank: i + 1,
-                    votes_display: formatVotes(n.votes),
-                }));
+                .map((n, i) => ({ ...n, rank: i + 1, votes_display: formatVotes(n.votes) }));
             return res.json(sorted);
         }
 
-        const { data, error } = await supabase
-            .from('nominees')
-            .select('*')
-            .order('votes', { ascending: false });
+        const snapshot = await db.ref('nominees').once('value');
+        let nominees = [];
+        snapshot.forEach(child => {
+            nominees.push({ id: child.key, ...child.val() });
+        });
 
-        if (error) throw error;
-
-        const ranked = data.map((n, i) => ({
-            ...n,
-            rank: i + 1,
-            votes_display: formatVotes(n.votes),
-        }));
+        const ranked = nominees
+            .sort((a, b) => (b.votes || 0) - (a.votes || 0))
+            .map((n, i) => ({
+                ...n,
+                rank: i + 1,
+                votes_display: formatVotes(n.votes || 0)
+            }));
 
         res.json(ranked);
     } catch (err) {
