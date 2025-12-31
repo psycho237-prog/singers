@@ -35,13 +35,13 @@ const Landing = () => {
     }, []);
 
     return (
-        <div className="flex flex-col min-h-screen bg-black text-white pb-24">
+        <div className="flex flex-col min-h-screen bg-dark text-white pb-24">
             {/* Header */}
             <div className="flex items-center justify-between p-6 pt-8">
                 <Link to="/categories" className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors">
                     <LayoutGrid size={24} />
                 </Link>
-                <h1 className="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400">African Singing Awards</h1>
+                <h1 className="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400">Sanza Music Awards</h1>
                 <Link to="/results" className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors relative">
                     <Trophy size={24} />
                     <span className="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full border-2 border-black" />
@@ -55,8 +55,8 @@ const Landing = () => {
                     transition={{ delay: 0.3 }}
                     className="text-4xl font-bold mb-8 tracking-tight"
                 >
-                    Amplify <br />
-                    <span className="text-secondary">The Rhythm</span>
+                    <span className="text-primary">Sanza</span> <br />
+                    <span className="text-primary">Music Awards</span>
                 </motion.h1>
 
                 <motion.div
@@ -116,7 +116,7 @@ const Landing = () => {
                     transition={{ delay: 0.5 }}
                     className="text-gray-400 mb-10 max-w-[280px] text-[11px] leading-relaxed"
                 >
-                    Your vote decides the next big star. Join millions of fans supporting African talent in this year's biggest showdown.
+                    LÀ OÙ LES ÉTOILES DE LA MUSIQUE BRILLENT
                 </motion.p>
 
                 <motion.div
@@ -130,7 +130,9 @@ const Landing = () => {
                             Start Voting Now →
                         </Button>
                     </Link>
-                    <p className="mt-4 text-[9px] text-gray-600 uppercase tracking-widest font-bold">Terms & Conditions Apply</p>
+                    <div className="mt-4 flex flex-col items-center gap-2">
+                        <p className="text-[9px] text-gray-400 font-bold">+237 672 2747 12 | AUGERBIDJANG@GMAIL.COM</p>
+                    </div>
                 </motion.div>
             </div>
         </div>

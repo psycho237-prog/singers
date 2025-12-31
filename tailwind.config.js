@@ -7,9 +7,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: '#8b5cf6', // Violet 500
-                secondary: '#d946ef', // Fuchsia 500
-                dark: '#0f0f1a',
+                primary: '#FFD700', // Gold
+                secondary: '#FDB931', // Darker Gold
+                dark: '#051040', // Deep Blue
                 'glass-bg': 'rgba(255, 255, 255, 0.1)',
                 'glass-border': 'rgba(255, 255, 255, 0.2)',
             },

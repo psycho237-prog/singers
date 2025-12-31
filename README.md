@@ -1,4 +1,4 @@
-# African Singing Awards
+# Sanza Music Awards
 
 A frontend-only React website for an African Singing Awards voting platform.
 
