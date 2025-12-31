@@ -53,16 +53,16 @@ const Landing = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    className="w-full relative min-h-[500px] flex flex-col items-center justify-center p-6"
+                    className="w-full relative min-h-[600px] flex flex-col items-center justify-center p-6"
                 >
                     {/* Background Image */}
                     <div
-                        className="absolute inset-0 z-0 bg-cover bg-center rounded-3xl overflow-hidden"
-                        style={{ backgroundImage: 'url("/hero-bg.png")' }}
+                        className="absolute inset-0 z-0 bg-cover bg-center rounded-3xl overflow-hidden shadow-2xl"
+                        style={{ backgroundImage: 'url("/hero-bg.jpg")' }}
                     />
 
                     {/* Content Overlay */}
-                    <div className="relative z-10 flex flex-col items-center">
+                    <div className="relative z-10 flex flex-col items-center w-full max-w-4xl pt-8">
                         {/* Logo Icon */}
                         <motion.img
                             initial={{ y: -20, opacity: 0 }}
@@ -70,7 +70,7 @@ const Landing = () => {
                             transition={{ delay: 0.2 }}
                             src="/sanza-logo.png"
                             alt="Sanza Trophy"
-                            className="w-32 h-auto mb-4 drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"
+                            className="w-24 md:w-32 h-auto mb-4 drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"
                         />
 
                         {/* Title Text */}
@@ -78,8 +78,8 @@ const Landing = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 }}
-                            className="text-6xl font-bold mb-2 tracking-tight text-primary drop-shadow-lg"
-                            style={{ fontFamily: 'serif' }} // Using serif to match the elegant look
+                            className="text-5xl md:text-7xl font-bold mb-2 tracking-tight text-primary drop-shadow-lg text-center"
+                            style={{ fontFamily: 'serif' }}
                         >
                             Sanza
                         </motion.h1>
@@ -87,7 +87,7 @@ const Landing = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
-                            className="text-3xl text-primary/90 font-medium mb-8 uppercase tracking-widest drop-shadow-md"
+                            className="text-2xl md:text-4xl text-primary/90 font-medium mb-6 uppercase tracking-widest drop-shadow-md text-center"
                         >
                             Music Awards
                         </motion.h2>
@@ -97,32 +97,68 @@ const Landing = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.6 }}
-                            className="text-white/80 text-xs tracking-[0.3em] uppercase mb-12 font-light"
+                            className="text-white/80 text-[10px] md:text-xs tracking-[0.3em] uppercase mb-10 font-light text-center"
                         >
                             LÀ OÙ LES ÉTOILES DE LA MUSIQUE BRILLENT
                         </motion.p>
 
-                        <div className="flex flex-col items-center gap-3">
-                            <div className="flex items-center gap-2 text-primary/80 text-[10px] font-bold tracking-widest">
-                                <span>📞 +237 672 2747 12</span>
-                                <span>|</span>
-                                <span>✉️ AUGERBIDJANG@GMAIL.COM</span>
-                            </div>
-                        </div>
+                        {/* Action Buttons */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.7 }}
+                            className="flex flex-col md:flex-row gap-4 items-center mb-16 w-full justify-center"
+                        >
+                            <Link to="/categories">
+                                <button className="px-8 py-3 bg-gradient-to-b from-[#FDB931] to-[#996515] text-white font-bold uppercase tracking-wider text-sm rounded shadow-[0_0_20px_rgba(255,215,0,0.3)] hover:scale-105 transition-transform min-w-[200px]">
+                                    VOTEZ MAINTENANT
+                                </button>
+                            </Link>
+                            <button
+                                onClick={() => window.open('https://youtube.com', '_blank')}
+                                className="flex items-center gap-3 text-white/80 uppercase text-xs tracking-widest hover:text-white transition-colors group px-6 py-3 border border-white/20 rounded hover:bg-white/5"
+                            >
+                                <span className="w-6 h-6 rounded-full border border-primary flex items-center justify-center group-hover:bg-primary/20 transition-colors text-primary">
+                                    ▶
+                                </span>
+                                REGARDER LA VIDÉO
+                            </button>
+                        </motion.div>
+
+                        {/* Category Cards */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.8 }}
+                            className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full px-4 mb-8"
+                        >
+                            {[
+                                { title: "MEILLEUR ARTISTE", subtitle: "MASCULIN" },
+                                { title: "MEILLEURE ARTISTE", subtitle: "FÉMININE" },
+                                { title: "CHANSON DE", subtitle: "L'ANNÉE" }
+                            ].map((card, idx) => (
+                                <div key={idx} className="bg-dark/60 backdrop-blur-md border border-primary/30 p-4 text-center hover:bg-primary/10 transition-colors cursor-pointer group rounded-lg relative overflow-hidden">
+                                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
+                                    <h3 className="text-secondary text-[9px] uppercase tracking-widest mb-1 group-hover:text-white transition-colors">{card.title}</h3>
+                                    <p className="text-white font-bold text-sm tracking-widest">{card.subtitle}</p>
+                                </div>
+                            ))}
+                        </motion.div>
                     </div>
                 </motion.div>
 
+                {/* Footer Info */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 }}
-                    className="w-full max-w-xs relative z-20 mt-[-40px]"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="mt-8 flex flex-col items-center gap-3 text-center"
                 >
-                    <Link to="/categories">
-                        <Button className="w-full text-sm py-4 rounded-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-black border-none font-bold shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all transform hover:scale-105">
-                            Start Voting Now →
-                        </Button>
-                    </Link>
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 text-primary/60 text-[10px] font-bold tracking-widest">
+                        <span className="flex items-center gap-2">📞 +237 672 2747 12</span>
+                        <span className="hidden md:block text-primary/20">|</span>
+                        <span className="flex items-center gap-2">✉️ AUGERBIDJANG@GMAIL.COM</span>
+                    </div>
                 </motion.div>
             </div>
         </div>
