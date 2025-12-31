@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { LayoutGrid, Play } from 'lucide-react';
+import { LayoutGrid, Play, Mail, MessageCircle } from 'lucide-react';
 import SanzaTrophy from '../components/ui/SanzaTrophy';
 
 const Landing = () => {
@@ -80,22 +80,37 @@ const Landing = () => {
                         </div>
                     </div>
 
-                    {/* Tagline */}
-                    <motion.p
+                    {/* Enhanced Tagline with Decorative Elements */}
+                    <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5, duration: 1 }}
-                        className="text-white/90 text-[10px] xs:text-xs md:text-sm tracking-[0.25em] md:tracking-[0.5em] uppercase mb-12 font-light text-center px-4 max-w-[280px] xs:max-w-none leading-loose"
+                        className="flex flex-col items-center mb-12"
                     >
-                        Là où les étoiles de la musique brillent
-                    </motion.p>
+                        <div className="flex items-center gap-3 mb-2">
+                            <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#FDB931]" />
+                            <div className="w-1 h-1 rounded-full bg-[#FDB931]" />
+                            <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#FDB931]" />
+                        </div>
+                        <p className="text-white/90 text-[10px] xs:text-xs md:text-sm tracking-[0.25em] md:tracking-[0.5em] uppercase font-light text-center px-4 max-w-[280px] xs:max-w-none leading-loose">
+                            Là où les étoiles de la musique brillent
+                        </p>
+                        <p className="text-[#FDB931]/60 text-[8px] xs:text-[9px] md:text-xs tracking-[0.3em] uppercase font-light text-center px-4 mt-2 italic">
+                            Célébrons l'excellence musicale africaine
+                        </p>
+                        <div className="flex items-center gap-3 mt-2">
+                            <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#FDB931]" />
+                            <div className="w-1 h-1 rounded-full bg-[#FDB931]" />
+                            <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#FDB931]" />
+                        </div>
+                    </motion.div>
 
                     {/* CTA Buttons */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.7 }}
-                        className="flex flex-col items-center gap-10 w-full max-w-[300px] xs:max-w-md"
+                        className="flex flex-col items-center gap-6 w-full max-w-[300px] xs:max-w-md"
                     >
                         <Link to="/categories" className="w-full md:w-auto">
                             <button className="w-full md:w-auto px-20 xs:px-24 py-4 xs:py-4.5 bg-gradient-to-r from-[#DF9F28] via-[#FDB931] to-[#DF9F28] text-[#051040] font-black uppercase tracking-widest text-xs xs:text-sm rounded-full shadow-[0_4px_30px_rgba(253,185,49,0.4)] hover:scale-105 active:scale-95 transition-all duration-300">
@@ -112,6 +127,35 @@ const Landing = () => {
                             </div>
                             Regarder la vidéo
                         </button>
+
+                        {/* Contact Section */}
+                        <div className="flex flex-col items-center gap-3 mt-4 w-full">
+                            <div className="h-[1px] w-16 bg-[#FDB931]/20 mb-2" />
+
+                            {/* WhatsApp Button */}
+                            <a
+                                href="https://wa.me/237672274712"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group flex items-center gap-3 text-[#FDB931]/80 hover:text-[#25D366] transition-all duration-300 text-[10px] md:text-xs font-medium tracking-wider"
+                            >
+                                <div className="w-8 h-8 rounded-full border border-[#FDB931]/50 group-hover:border-[#25D366] group-hover:scale-110 flex items-center justify-center transition-all duration-300 bg-white/5 backdrop-blur-sm">
+                                    <MessageCircle size={14} className="group-hover:fill-[#25D366]/10" />
+                                </div>
+                                <span className="uppercase tracking-[0.2em]">Contactez-nous</span>
+                            </a>
+
+                            {/* Email Button */}
+                            <a
+                                href="mailto:augerbidjang@gmail.com"
+                                className="group flex items-center gap-3 text-[#FDB931]/80 hover:text-white transition-all duration-300 text-[10px] md:text-xs font-medium tracking-wider"
+                            >
+                                <div className="w-8 h-8 rounded-full border border-[#FDB931]/50 group-hover:border-white group-hover:scale-110 flex items-center justify-center transition-all duration-300 bg-white/5 backdrop-blur-sm">
+                                    <Mail size={14} />
+                                </div>
+                                <span className="uppercase tracking-[0.2em]">Email</span>
+                            </a>
+                        </div>
                     </motion.div>
                 </div>
 
