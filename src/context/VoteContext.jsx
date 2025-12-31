@@ -66,14 +66,19 @@ export const VoteProvider = ({ children }) => {
             } catch (err) {
                 console.warn('⚠️ Backend not available, using local data:', err.message);
                 setUseBackend(false);
+
                 // Fall back to localStorage if available
                 const savedNominees = localStorage.getItem('nominees');
                 const savedTransactions = localStorage.getItem('transactions');
                 const savedRevenue = localStorage.getItem('totalRevenue');
-
                 if (savedNominees) setNominees(JSON.parse(savedNominees));
+                else setNominees(initialNominees);
+
                 if (savedTransactions) setTransactions(JSON.parse(savedTransactions));
                 if (savedRevenue) setTotalRevenue(JSON.parse(savedRevenue));
+
+                // Ensure categories are set to initial if backend fails
+                setCategories(initialCategories);
             } finally {
                 setIsLoading(false);
             }
