@@ -53,29 +53,76 @@ const Landing = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    className="w-full max-w-4xl mx-auto mb-8 shadow-2xl rounded-2xl overflow-hidden border border-white/10"
+                    className="w-full relative min-h-[500px] flex flex-col items-center justify-center p-6"
                 >
-                    <img
-                        src="/sanza-banner.jpg"
-                        alt="Sanza Music Awards Banner"
-                        className="w-full h-auto object-cover"
+                    {/* Background Image */}
+                    <div
+                        className="absolute inset-0 z-0 bg-cover bg-center rounded-3xl overflow-hidden"
+                        style={{ backgroundImage: 'url("/hero-bg.png")' }}
                     />
+
+                    {/* Content Overlay */}
+                    <div className="relative z-10 flex flex-col items-center">
+                        {/* Logo Icon */}
+                        <motion.img
+                            initial={{ y: -20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            src="/sanza-logo.png"
+                            alt="Sanza Trophy"
+                            className="w-32 h-auto mb-4 drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"
+                        />
+
+                        {/* Title Text */}
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="text-6xl font-bold mb-2 tracking-tight text-primary drop-shadow-lg"
+                            style={{ fontFamily: 'serif' }} // Using serif to match the elegant look
+                        >
+                            Sanza
+                        </motion.h1>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 }}
+                            className="text-3xl text-primary/90 font-medium mb-8 uppercase tracking-widest drop-shadow-md"
+                        >
+                            Music Awards
+                        </motion.h2>
+
+                        {/* Subtitle */}
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.6 }}
+                            className="text-white/80 text-xs tracking-[0.3em] uppercase mb-12 font-light"
+                        >
+                            LÀ OÙ LES ÉTOILES DE LA MUSIQUE BRILLENT
+                        </motion.p>
+
+                        <div className="flex flex-col items-center gap-3">
+                            <div className="flex items-center gap-2 text-primary/80 text-[10px] font-bold tracking-widest">
+                                <span>📞 +237 672 2747 12</span>
+                                <span>|</span>
+                                <span>✉️ AUGERBIDJANG@GMAIL.COM</span>
+                            </div>
+                        </div>
+                    </div>
                 </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7 }}
-                    className="w-full max-w-xs"
+                    transition={{ delay: 0.8 }}
+                    className="w-full max-w-xs relative z-20 mt-[-40px]"
                 >
                     <Link to="/categories">
-                        <Button className="w-full text-sm py-4 rounded-full bg-secondary hover:bg-secondary/90 text-white border-none font-bold shadow-[0_10px_30px_rgba(217,70,239,0.3)]">
+                        <Button className="w-full text-sm py-4 rounded-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-black border-none font-bold shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all transform hover:scale-105">
                             Start Voting Now →
                         </Button>
                     </Link>
-                    <div className="mt-4 flex flex-col items-center gap-2">
-                        <p className="text-[9px] text-gray-400 font-bold">+237 672 2747 12 | AUGERBIDJANG@GMAIL.COM</p>
-                    </div>
                 </motion.div>
             </div>
         </div>
