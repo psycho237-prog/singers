@@ -49,75 +49,18 @@ const Landing = () => {
             </div>
 
             <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="text-4xl font-bold mb-8 tracking-tight"
-                >
-                    <span className="text-primary">Sanza</span> <br />
-                    <span className="text-primary">Music Awards</span>
-                </motion.h1>
-
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    className="mb-8 relative w-full max-w-[320px]"
+                    className="w-full max-w-4xl mx-auto mb-8 shadow-2xl rounded-2xl overflow-hidden border border-white/10"
                 >
-                    <div className="absolute inset-0 bg-secondary/20 blur-[80px] rounded-full" />
-
-                    {/* Carousel Container */}
-                    <div className="relative overflow-hidden rounded-[2.5rem]">
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={currentIndex}
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
-                                transition={{ duration: 0.5 }}
-                                className="relative w-full"
-                            >
-                                <img
-                                    src={carouselItems[currentIndex].image}
-                                    alt={carouselItems[currentIndex].title}
-                                    className="w-full h-[400px] object-cover rounded-[2.5rem] border border-white/10"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-[2.5rem]" />
-
-                                <div className="absolute top-4 left-4">
-                                    <span className="px-3 py-1 bg-secondary text-[10px] font-bold rounded-full uppercase tracking-widest">
-                                        {carouselItems[currentIndex].tag}
-                                    </span>
-                                </div>
-
-                                <div className="absolute bottom-8 left-8 text-left">
-                                    <h3 className="text-xl font-bold mb-1">{carouselItems[currentIndex].title}</h3>
-                                    <p className="text-xs text-gray-400">{carouselItems[currentIndex].description}</p>
-                                </div>
-                            </motion.div>
-                        </AnimatePresence>
-                    </div>
-
-                    {/* Pagination Dots */}
-                    <div className="flex justify-center gap-2 mt-6">
-                        {carouselItems.map((_, index) => (
-                            <div
-                                key={index}
-                                className={`h-1 rounded-full transition-all duration-300 ${index === currentIndex ? 'w-6 bg-secondary' : 'w-1.5 bg-white/20'}`}
-                            />
-                        ))}
-                    </div>
+                    <img
+                        src="/sanza-banner.jpg"
+                        alt="Sanza Music Awards Banner"
+                        className="w-full h-auto object-cover"
+                    />
                 </motion.div>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="text-gray-400 mb-10 max-w-[280px] text-[11px] leading-relaxed"
-                >
-                    LÀ OÙ LES ÉTOILES DE LA MUSIQUE BRILLENT
-                </motion.p>
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
