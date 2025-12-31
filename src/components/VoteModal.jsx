@@ -4,7 +4,9 @@ import { X, Share2, Minus, Plus, Lock, Smartphone, CreditCard, Check, AlertCircl
 import { useNavigate } from 'react-router-dom';
 import Button from './ui/Button';
 import { useVotes } from '../context/VoteContext';
+import { useLayout } from '../context/LayoutContext';
 import api from '../services/api';
+import { useEffect } from 'react';
 
 const VoteModal = ({ isOpen, onClose, nominee }) => {
     const [voteCount, setVoteCount] = useState(1);
@@ -18,10 +20,53 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    const { incrementVote, processVote, useBackend, refetch, categories } = useVotes();
+    const { incrementVote, processVote, useBackend, refetch, categories, language } = useVotes();
+    const { hideNavbar, showNavbar } = useLayout();
+
+    useEffect(() => {
+        if (isOpen) {
+            hideNavbar();
+        }
+        return () => {
+            showNavbar();
+        };
+    }, [isOpen, hideNavbar, showNavbar]);
+
+    const t = {
+        FR: {
+            share: "Partager le profil",
+            copied: "Lien copié !",
+            voteCount: "Nombre de Votes / Prix",
+            paymentMethod: "Moyen de Paiement",
+            phonePlaceholder: "Numéro de téléphone",
+            processing: "TRAITEMENT EN COURS...",
+            polling: "VÉRIFIEZ VOTRE TÉLÉPHONE...",
+            voteNow: "VOTER MAINTENANT",
+            secure: "Paiement Sécurisé",
+            confirmPhone: "Vérifiez votre téléphone pour confirmer le paiement.",
+            paymentFailed: "Le paiement a échoué. Veuillez réessayer.",
+            transactionError: "Erreur de transaction.",
+            category: "Catégorie"
+        },
+        EN: {
+            share: "Share Profile",
+            copied: "Link copied!",
+            voteCount: "Number of Votes / Price",
+            paymentMethod: "Payment Method",
+            phonePlaceholder: "Phone Number",
+            processing: "PROCESSING...",
+            polling: "CHECK YOUR PHONE...",
+            voteNow: "VOTE NOW",
+            secure: "Secure Payment",
+            confirmPhone: "Check your phone to confirm payment.",
+            paymentFailed: "Payment failed. Please try again.",
+            transactionError: "Transaction error.",
+            category: "Category"
+        }
+    }[language];
 
     // Dynamic category title based on the new 35 categories
-    const categoryTitle = categories?.find(c => c.id === nominee?.categoryId)?.title || 'Catégorie';
+    const categoryTitle = categories?.find(c => c.id === nominee?.categoryId)?.title || t.category;
 
     const pricePerVote = 105;
     const totalPrice = voteCount * pricePerVote;
@@ -117,11 +162,11 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                 >
                                     {isCopied ? (
                                         <>
-                                            <Check size={12} /> Lien copié !
+                                            <Check size={12} /> {t.copied}
                                         </>
                                     ) : (
                                         <>
-                                            <Share2 size={12} /> Partager le profil
+                                            <Share2 size={12} /> {t.share}
                                         </>
                                     )}
                                 </Button>
@@ -129,7 +174,7 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
 
                             {/* Vote Counter */}
                             <div className="bg-white/5 rounded-3xl p-6 mb-6 border border-white/5">
-                                <p className="text-center text-gray-500 text-[10px] mb-4 uppercase tracking-widest font-bold">Nombre de Votes / Price: {pricePerVote} XAF</p>
+                                <p className="text-center text-gray-500 text-[10px] mb-4 uppercase tracking-widest font-bold">{t.voteCount}: {pricePerVote} XAF</p>
                                 <div className="flex items-center justify-center gap-8">
                                     <button
                                         onClick={() => handleVoteChange(-1)}
@@ -167,7 +212,7 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
 
                             {/* Payment Methods */}
                             <div className="space-y-4 mb-8">
-                                <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-4">Moyen de Paiement</p>
+                                <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-4">{t.paymentMethod}</p>
                                 <div className="grid grid-cols-2 gap-4">
                                     <button
                                         onClick={() => setPaymentMethod('MOMO')}
@@ -198,7 +243,7 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-bold text-sm">+237</span>
                                     <input
                                         type="tel"
-                                        placeholder="Numéro de téléphone"
+                                        placeholder={t.phonePlaceholder}
                                         value={phoneNumber}
                                         maxLength={9}
                                         onChange={(e) => {
@@ -229,7 +274,7 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                                 setIsPolling(true);
                                                 if (result.status === 'pending') {
                                                     setLocalPolling(true);
-                                                    setPollingMessage(result.message || 'Vérifiez votre téléphone pour confirmer le paiement.');
+                                                    setPollingMessage(result.message || t.confirmPhone);
 
                                                     const pollInterval = setInterval(async () => {
                                                         try {
@@ -244,7 +289,7 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                                                 clearInterval(pollInterval);
                                                                 setIsPolling(false);
                                                                 setLocalPolling(false);
-                                                                setError(statusResult.error || 'Le paiement a échoué. Veuillez réessayer.');
+                                                                setError(statusResult.error || t.paymentFailed);
                                                             }
                                                         } catch (e) {
                                                             console.error('Polling error:', e);
@@ -260,7 +305,7 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                                     navigate('/vote-success', { state: { nominee, voteCount } });
                                                 }
                                             } else {
-                                                setError(result.error || result.message || 'Le paiement a échoué. Veuillez réessayer.');
+                                                setError(result.error || result.message || t.paymentFailed);
                                                 setIsLoading(false);
                                             }
                                         } else {
@@ -269,18 +314,18 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                                 incrementVote(nominee.id, voteCount, totalPrice, paymentMethod);
                                                 navigate('/vote-success', { state: { nominee, voteCount } });
                                             } else {
-                                                setError('Le paiement a échoué. Veuillez réessayer.');
+                                                setError(t.paymentFailed);
                                                 setIsLoading(false);
                                             }
                                         }
                                     } catch (err) {
                                         console.error('Payment error:', err);
-                                        setError(err.message || 'Erreur de transaction.');
+                                        setError(err.message || t.transactionError);
                                         setIsLoading(false);
                                     }
                                 }}
                             >
-                                {isLoading ? 'TRAITEMENT EN COURS...' : (localPolling || isPolling) ? 'VÉRIFIEZ VOTRE TÉLÉPHONE...' : `VOTER MAINTENANT • ${totalPrice} XAF`}
+                                {isLoading ? t.processing : (localPolling || isPolling) ? t.polling : `${t.voteNow} • ${totalPrice} XAF`}
                             </Button>
 
                             {(isPolling || localPolling) && pollingMessage && (
@@ -297,7 +342,7 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                             )}
 
                             <div className="flex items-center justify-center gap-2 text-gray-500 text-[10px] font-bold uppercase tracking-widest">
-                                <Lock size={12} /> Paiement Sécurisé
+                                <Lock size={12} /> {t.secure}
                             </div>
                         </div>
                     </motion.div>

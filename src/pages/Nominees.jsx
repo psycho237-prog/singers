@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
-import { ChevronLeft, Star, Mic2, Share2, Check, LayoutGrid, User } from 'lucide-react';
+import { ChevronLeft, Star, Mic2, Share2, Check, LayoutGrid, User, Globe } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import VoteModal from '../components/VoteModal';
 import { useVotes } from '../context/VoteContext';
@@ -10,8 +10,37 @@ import { useVotes } from '../context/VoteContext';
 // Local nominees removed in favor of centralized mockData.js
 
 const Nominees = () => {
-    const { nominees: allNominees, categories } = useVotes();
+    const { nominees: allNominees, categories, language, switchLanguage } = useVotes();
     const [activeTab, setActiveTab] = useState('All');
+
+    const t = {
+        FR: {
+            voteFor: "Votez pour le",
+            winner: "gagnant 2026.",
+            endsIn: "Le vote se termine dans 3 jours. Il vous reste 5 votes aujourd'hui.",
+            tabs: {
+                All: "Tous",
+                Trending: "Tendances",
+                Newest: "Nouveaux",
+                "A-Z": "A-Z"
+            },
+            voter: "VOTER",
+            votes: "Votes"
+        },
+        EN: {
+            voteFor: "Vote for the",
+            winner: "2026 winner.",
+            endsIn: "Voting ends in 3 days. You have 5 votes left today.",
+            tabs: {
+                All: "All",
+                Trending: "Trending",
+                Newest: "Newest",
+                "A-Z": "A-Z"
+            },
+            voter: "VOTE",
+            votes: "Votes"
+        }
+    }[language];
     const [isVoteModalOpen, setIsVoteModalOpen] = useState(false);
     const [selectedNominee, setSelectedNominee] = useState(null);
     const [searchParams] = useSearchParams();
@@ -60,7 +89,16 @@ const Nominees = () => {
                         <ChevronLeft size={24} />
                     </Button>
                 </Link>
-                <h2 className="text-sm font-bold tracking-widest uppercase">{category.title}</h2>
+                <div className="flex flex-col items-center">
+                    <h2 className="text-sm font-bold tracking-widest uppercase">{category.title}</h2>
+                    <button
+                        onClick={switchLanguage}
+                        className="mt-1 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/5 border border-white/10"
+                    >
+                        <Globe size={10} className="text-[#FDB931]" />
+                        <span className="text-[9px] font-black text-[#FDB931]">{language}</span>
+                    </button>
+                </div>
                 <Button variant="ghost" className="p-2 rounded-full hover:bg-white/5">
                     <LayoutGrid size={20} />
                 </Button>
@@ -69,11 +107,11 @@ const Nominees = () => {
             <div className="px-6">
                 <div className="mb-8">
                     <h2 className="text-3xl font-bold mb-2">
-                        Votez pour le <br />
-                        <span className="text-secondary">gagnant 2026.</span>
+                        {t.voteFor} <br />
+                        <span className="text-secondary">{t.winner}</span>
                     </h2>
                     <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest">
-                        Le vote se termine dans 3 jours. Il vous reste 5 votes aujourd'hui.
+                        {t.endsIn}
                     </p>
                 </div>
 
@@ -88,7 +126,7 @@ const Nominees = () => {
                                 : 'bg-white/5 text-gray-400 hover:bg-white/10'
                                 }`}
                         >
-                            {tab === 'All' ? 'Tous' : tab === 'Trending' ? 'Tendances' : tab === 'Newest' ? 'Nouveaux' : tab}
+                            {t.tabs[tab] || tab}
                         </button>
                     ))}
                 </div>
@@ -127,7 +165,7 @@ const Nominees = () => {
                                             </div>
                                             <div className="text-right">
                                                 <p className="text-xl font-bold">{nominee.votes}</p>
-                                                <p className="text-[9px] text-gray-500 uppercase font-bold tracking-widest">Votes</p>
+                                                <p className="text-[9px] text-gray-500 uppercase font-bold tracking-widest">{t.votes}</p>
                                             </div>
                                         </div>
                                         <p className="text-[11px] text-gray-400 leading-relaxed line-clamp-2 font-medium">
@@ -154,7 +192,7 @@ const Nominees = () => {
                                         className="w-full py-4 bg-secondary hover:bg-secondary/90 text-white border-none rounded-full font-bold flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-[0_10px_20px_rgba(217,70,239,0.2)]"
                                         onClick={() => handleVoteClick(nominee)}
                                     >
-                                        <User size={16} fill="currentColor" /> VOTER
+                                        <User size={16} fill="currentColor" /> {t.voter}
                                     </Button>
                                 </div>
                             </Card>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
-import { Star, TrendingUp, ChevronLeft, Search, Medal, Crown, Filter } from 'lucide-react';
+import { Star, TrendingUp, ChevronLeft, Search, Medal, Crown, Filter, Globe } from 'lucide-react';
 import SanzaTrophy from '../components/ui/SanzaTrophy';
 import { Link } from 'react-router-dom';
 import SearchOverlay from '../components/SearchOverlay';
@@ -11,9 +11,36 @@ import { useVotes } from '../context/VoteContext';
 // Local standings and winners removed in favor of centralized mockData.js
 
 const Results = () => {
-    const { nominees, categories, getGlobalRankings, getCategoryRankings, getTotalVotes } = useVotes();
+    const { nominees, categories, getGlobalRankings, getCategoryRankings, getTotalVotes, language, switchLanguage } = useVotes();
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [selectedCategoryId, setSelectedCategoryId] = useState('global');
+
+    const t = {
+        FR: {
+            title: "Résultats en Direct",
+            totalVotes: "Total des Votes Exprimés",
+            realTime: "Mise à jour en temps réel",
+            nextUpdate: "Prochaine mise à jour dans 4m",
+            general: "Classement Général",
+            live: "Résultats en Direct",
+            pos: "Position Actuelle",
+            pastWinners: "Anciens Gagnants",
+            unknown: "Inconnue",
+            filterAll: "GÉNÉRAL"
+        },
+        EN: {
+            title: "Live Results",
+            totalVotes: "Total Votes Cast",
+            realTime: "Real-time update",
+            nextUpdate: "Next update in 4m",
+            general: "Global Rankings",
+            live: "Live Results",
+            pos: "Current Position",
+            pastWinners: "Previous Winners",
+            unknown: "Unknown",
+            filterAll: "GLOBAL"
+        }
+    }[language];
 
     const globalRankings = getGlobalRankings();
 
@@ -31,7 +58,7 @@ const Results = () => {
     };
 
     const getCategoryTitle = (categoryId) => {
-        return categories.find(c => c.id === categoryId)?.title || 'Inconnue';
+        return categories.find(c => c.id === categoryId)?.title || t.unknown;
     };
 
     return (
@@ -43,7 +70,16 @@ const Results = () => {
                         <ChevronLeft size={24} />
                     </Button>
                 </Link>
-                <h2 className="text-sm font-bold tracking-widest uppercase">Résultats en Direct</h2>
+                <div className="flex flex-col items-center">
+                    <h2 className="text-sm font-bold tracking-widest uppercase">{t.title}</h2>
+                    <button
+                        onClick={switchLanguage}
+                        className="mt-1 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/5 border border-white/10"
+                    >
+                        <Globe size={10} className="text-[#FDB931]" />
+                        <span className="text-[9px] font-black text-[#FDB931]">{language}</span>
+                    </button>
+                </div>
                 <Button
                     variant="ghost"
                     className="p-2 rounded-full hover:bg-white/5"
@@ -72,11 +108,11 @@ const Results = () => {
                         <SanzaTrophy size={60} />
                     </div>
                     <div className="relative z-10">
-                        <h3 className="text-sm font-bold text-secondary uppercase tracking-[0.2em] mb-2">Total des Votes Exprimés</h3>
+                        <h3 className="text-sm font-bold text-secondary uppercase tracking-[0.2em] mb-2">{t.totalVotes}</h3>
                         <p className="text-5xl font-black tracking-tighter">{getTotalVotes()}</p>
                         <p className="text-[10px] text-gray-400 mt-2 font-bold uppercase tracking-widest flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                            Mise à jour en temps réel • Prochaine mise à jour dans 4m
+                            {t.realTime} • {t.nextUpdate}
                         </p>
                     </div>
                 </div>
@@ -86,10 +122,10 @@ const Results = () => {
                     <div className="flex flex-col gap-4 mb-6">
                         <div className="flex justify-between items-center">
                             <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">
-                                {selectedCategoryId === 'global' ? 'Classement Général' : getCategoryTitle(parseInt(selectedCategoryId))}
+                                {selectedCategoryId === 'global' ? t.general : getCategoryTitle(parseInt(selectedCategoryId))}
                             </h3>
                             <span className="text-[10px] text-secondary font-bold uppercase tracking-widest flex items-center gap-1">
-                                <TrendingUp size={12} /> Résultats en Direct
+                                <TrendingUp size={12} /> {t.live}
                             </span>
                         </div>
 
@@ -98,7 +134,7 @@ const Results = () => {
                                 onClick={() => setSelectedCategoryId('global')}
                                 className={`px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest whitespace-nowrap border ${selectedCategoryId === 'global'
                                     ? 'bg-secondary border-secondary text-white' : 'bg-transparent border-white/10 text-gray-500'} transition-all`}>
-                                GÉNÉRAL
+                                {t.filterAll}
                             </button>
                             {categories.map(cat => (
                                 <button
@@ -159,7 +195,7 @@ const Results = () => {
 
                                         <div className="text-right">
                                             <p className="text-sm font-bold">{nominee.votes}</p>
-                                            <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">Position Actuelle</p>
+                                            <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">{t.pos}</p>
                                         </div>
                                     </Card>
                                 </motion.div>
@@ -170,7 +206,7 @@ const Results = () => {
 
                 {/* Anciens Gagnants */}
                 <div className="mb-12">
-                    <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-6">Anciens Gagnants</h3>
+                    <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-6">{t.pastWinners}</h3>
                     <div className="grid grid-cols-2 gap-4">
                         {nominees.filter(n => n.id <= 2).map((winner, index) => (
                             <motion.div

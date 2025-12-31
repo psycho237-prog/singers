@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
-import { Mic2, Users, Music, Video, Star, Sparkles, ChevronLeft, Search, Heart, Disc, Radio, Zap } from 'lucide-react';
+import { Mic2, Users, Music, Video, Star, Sparkles, ChevronLeft, Search, Heart, Disc, Radio, Zap, Globe } from 'lucide-react';
 import SanzaTrophy from '../components/ui/SanzaTrophy';
 import { Link } from 'react-router-dom';
 import { useVotes } from '../context/VoteContext';
@@ -11,9 +11,32 @@ import SearchOverlay from '../components/SearchOverlay';
 // Local categories removed in favor of centralized mockData.js
 
 const Categories = () => {
-    const { categories, nominees } = useVotes();
+    const { categories, nominees, language, switchLanguage } = useVotes();
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [showAll, setShowAll] = useState(false);
+
+    const t = {
+        FR: {
+            title: "Catégories de Prix",
+            showAll: "Tout voir",
+            showLess: "Voir moins",
+            featured: "Catégorie Vedette",
+            voteOpen: "VOTE OUVERT",
+            voteNow: "Voter Maintenant",
+            finishIn: "FINIT DANS",
+            browse: "Parcourir les catégories"
+        },
+        EN: {
+            title: "Award Categories",
+            showAll: "View All",
+            showLess: "View Less",
+            featured: "Featured Category",
+            voteOpen: "OPEN VOTE",
+            voteNow: "Vote Now",
+            finishIn: "ENDS IN",
+            browse: "Browse Categories"
+        }
+    }[language];
 
     const featuredCategory = categories.find(c => c.featured) || categories[0];
     const otherCategories = categories.filter(c => !c.featured);
@@ -41,7 +64,16 @@ const Categories = () => {
                         <ChevronLeft size={24} />
                     </Button>
                 </Link>
-                <h2 className="text-sm font-bold tracking-widest uppercase">Catégories de Prix</h2>
+                <div className="flex flex-col items-center">
+                    <h2 className="text-sm font-bold tracking-widest uppercase">{t.title}</h2>
+                    <button
+                        onClick={switchLanguage}
+                        className="mt-1 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/5 border border-white/10"
+                    >
+                        <Globe size={10} className="text-[#FDB931]" />
+                        <span className="text-[9px] font-black text-[#FDB931]">{language}</span>
+                    </button>
+                </div>
                 <Button
                     variant="ghost"
                     className="p-2 rounded-full hover:bg-white/5"
@@ -70,7 +102,7 @@ const Categories = () => {
 
                         <div className="absolute top-4 right-4">
                             <span className="text-[9px] font-bold bg-secondary text-white px-3 py-1 rounded-full uppercase tracking-widest">
-                                ● VOTE OUVERT
+                                ● {t.voteOpen}
                             </span>
                         </div>
 
@@ -82,25 +114,25 @@ const Categories = () => {
                                 <div>
                                     <h3 className="text-2xl font-bold">{featuredCategory.title}</h3>
                                     <p className="text-[10px] text-gray-300 uppercase tracking-widest">
-                                        Catégorie Vedette • {featuredCategory.nominees} <br />
-                                        <span className="text-secondary font-bold">FINIT DANS 20H</span>
+                                        {t.featured} • {featuredCategory.nominees} <br />
+                                        <span className="text-secondary font-bold">{t.finishIn} 20H</span>
                                     </p>
                                 </div>
                             </div>
                             <Button className="w-full py-3 rounded-xl font-bold bg-secondary hover:bg-secondary/90 text-white border-none text-xs">
-                                Voter Maintenant
+                                {t.voteNow}
                             </Button>
                         </div>
                     </Card>
                 </Link>
 
                 <div className="flex justify-between items-center">
-                    <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">Parcourir les catégories</h3>
+                    <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">{t.browse}</h3>
                     <button
                         onClick={() => setShowAll(!showAll)}
                         className="text-[10px] text-secondary font-bold uppercase tracking-widest hover:underline"
                     >
-                        {showAll ? 'Voir moins' : 'Tout voir'}
+                        {showAll ? t.showLess : t.showAll}
                     </button>
                 </div>
 
@@ -131,7 +163,7 @@ const Categories = () => {
 
                                         <div className="absolute bottom-4 left-4 right-4">
                                             <span className="text-[8px] font-bold text-secondary uppercase tracking-[0.2em] mb-1 block">
-                                                VOTE OUVERT
+                                                {t.voteOpen}
                                             </span>
                                             <h4 className="font-bold text-sm mb-1 leading-tight">{cat.title}</h4>
                                             <p className="text-[8px] text-gray-400 font-bold uppercase tracking-widest">{cat.nominees}</p>
@@ -143,7 +175,7 @@ const Categories = () => {
                     })}
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

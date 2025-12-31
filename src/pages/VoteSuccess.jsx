@@ -8,7 +8,26 @@ import { useEffect } from 'react';
 const VoteSuccess = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { categories } = useVotes();
+    const { categories, language } = useVotes();
+
+    const t = {
+        FR: {
+            title: "Voix entendue !",
+            thanks: "Merci de soutenir les talents africains. Votre vote a été enregistré avec succès.",
+            nominatedIn: "Nommé dans",
+            voteAnother: "Voter dans une autre catégorie",
+            shareResult: "Partager le résultat",
+            nominee: "Nommé"
+        },
+        EN: {
+            title: "Voice Heard!",
+            thanks: "Thank you for supporting African talent. Your vote has been successfully recorded.",
+            nominatedIn: "Nominated in",
+            voteAnother: "Vote in another category",
+            shareResult: "Share result",
+            nominee: "Nominee"
+        }
+    }[language];
     const { nominee, voteCount } = location.state || {};
 
     useEffect(() => {
@@ -20,7 +39,7 @@ const VoteSuccess = () => {
     if (!nominee) return null;
 
     const getCategoryTitle = (id) => {
-        return categories.find(c => c.id === id)?.title || 'Nommé';
+        return categories.find(c => c.id === id)?.title || t.nominee;
     };
 
     return (
@@ -45,7 +64,7 @@ const VoteSuccess = () => {
                 transition={{ delay: 0.2 }}
                 className="text-4xl font-bold mb-4"
             >
-                Voix entendue !
+                {t.title}
             </motion.h1>
 
             <motion.p
@@ -54,7 +73,7 @@ const VoteSuccess = () => {
                 transition={{ delay: 0.3 }}
                 className="text-gray-400 mb-12 max-w-xs"
             >
-                Merci de soutenir les talents africains. Votre vote a été enregistré avec succès.
+                {t.thanks}
             </motion.p>
 
             {/* Voted Card Preview */}
@@ -70,7 +89,7 @@ const VoteSuccess = () => {
                     className="w-full h-48 object-cover rounded-2xl mb-4"
                 />
                 <h3 className="text-xl font-bold">{nominee.name}</h3>
-                <p className="text-sm text-gray-400">Nommé dans {getCategoryTitle(nominee.categoryId)}</p>
+                <p className="text-sm text-gray-400">{t.nominatedIn} {getCategoryTitle(nominee.categoryId)}</p>
             </motion.div>
 
             <motion.div
@@ -81,13 +100,13 @@ const VoteSuccess = () => {
             >
                 <Link to="/categories">
                     <Button className="w-full py-4">
-                        Voter dans une autre catégorie
+                        {t.voteAnother}
                     </Button>
                 </Link>
 
                 <Button variant="ghost" className="w-full gap-2">
                     <Share2 size={18} />
-                    Partager le résultat
+                    {t.shareResult}
                 </Button>
             </motion.div>
         </div>

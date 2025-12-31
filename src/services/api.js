@@ -23,6 +23,13 @@ async function apiRequest(endpoint, options = {}) {
             headers,
         });
 
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text();
+            console.error(`Expected JSON but got ${contentType || 'nothing'}`, text.slice(0, 100));
+            throw new Error(`Invalid API response: Server returned ${response.status} ${response.statusText}`);
+        }
+
         const data = await response.json();
 
         if (!response.ok) {
@@ -31,7 +38,7 @@ async function apiRequest(endpoint, options = {}) {
 
         return data;
     } catch (error) {
-        console.error(`API Error [${endpoint}]:`, error);
+        console.warn(`API Service [${endpoint}]:`, error.message);
         throw error;
     }
 }

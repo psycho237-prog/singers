@@ -1,9 +1,29 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { LayoutGrid, Mail, MessageCircle } from 'lucide-react';
+import { LayoutGrid, Mail, MessageCircle, Globe } from 'lucide-react';
 import SanzaTrophy from '../components/ui/SanzaTrophy';
+import { useVotes } from '../context/VoteContext';
 
 const Landing = () => {
+    const { language, switchLanguage } = useVotes();
+
+    const t = {
+        FR: {
+            title: "Sanza Music Awards",
+            tagline: "Là où les étoiles de la musique brillent",
+            cta: "Votez Maintenant",
+            whatsapp: "Contactez-nous sur WhatsApp",
+            email: "Envoyez-nous un email"
+        },
+        EN: {
+            title: "Sanza Music Awards",
+            tagline: "Where music stars shine",
+            cta: "Vote Now",
+            whatsapp: "Contact us on WhatsApp",
+            email: "Send us an email"
+        }
+    }[language];
+
     return (
         <div className="flex flex-col min-h-screen bg-[#051040] text-white pb-24 font-sans overflow-x-hidden relative">
             {/* Responsive Luxury Background */}
@@ -31,11 +51,23 @@ const Landing = () => {
 
             {/* Header */}
             <div className="flex items-center justify-between p-6 pt-10 z-50 relative max-w-7xl mx-auto w-full">
-                <Link to="/categories" className="p-2.5 rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10 group backdrop-blur-md">
-                    <LayoutGrid size={18} className="text-[#FDB931] group-hover:text-white transition-colors" />
-                </Link>
+                <div className="flex items-center gap-3">
+                    <Link to="/categories" className="p-2.5 rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10 group backdrop-blur-md">
+                        <LayoutGrid size={18} className="text-[#FDB931] group-hover:text-white transition-colors" />
+                    </Link>
+
+                    {/* Language Switcher */}
+                    <button
+                        onClick={switchLanguage}
+                        className="p-2.5 px-4 rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10 backdrop-blur-md flex items-center gap-2 group"
+                    >
+                        <Globe size={14} className="text-[#FDB931] group-hover:rotate-180 transition-transform duration-500" />
+                        <span className="text-[10px] font-black tracking-widest text-[#FDB931]">{language}</span>
+                    </button>
+                </div>
+
                 <div className="hidden md:block">
-                    <h1 className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#FDB931]/80">Sanza Music Awards</h1>
+                    <h1 className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#FDB931]/80">{t.title}</h1>
                 </div>
                 <Link to="/results" className="p-2.5 rounded-full bg-white/5 hover:bg-white/10 transition-all relative border border-white/10 group flex items-center justify-center backdrop-blur-md">
                     <SanzaTrophy size={20} className="group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.5)] transition-all" />
@@ -93,7 +125,7 @@ const Landing = () => {
                             <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#FDB931]" />
                         </div>
                         <p className="text-white/90 text-[10px] xs:text-xs md:text-sm tracking-[0.25em] md:tracking-[0.5em] uppercase font-light text-center px-4 max-w-[280px] xs:max-w-none leading-loose">
-                            Là où les étoiles de la musique brillent
+                            {t.tagline}
                         </p>
 
                         <div className="flex items-center gap-3 mt-2">
@@ -112,7 +144,7 @@ const Landing = () => {
                     >
                         <Link to="/categories" className="w-full md:w-auto">
                             <button className="w-full md:w-auto px-20 xs:px-24 py-4 xs:py-4.5 bg-gradient-to-r from-[#DF9F28] via-[#FDB931] to-[#DF9F28] text-[#051040] font-black uppercase tracking-widest text-xs xs:text-sm rounded-full shadow-[0_4px_30px_rgba(253,185,49,0.4)] hover:scale-105 active:scale-95 transition-all duration-300">
-                                Votez Maintenant
+                                {t.cta}
                             </button>
                         </Link>
 
@@ -125,7 +157,7 @@ const Landing = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="group"
-                                aria-label="Contactez-nous sur WhatsApp"
+                                aria-label={t.whatsapp}
                             >
                                 <div className="w-11 h-11 rounded-full border-2 border-[#FDB931]/50 group-hover:border-[#25D366] group-hover:scale-110 flex items-center justify-center transition-all duration-300 bg-white/5 backdrop-blur-sm">
                                     <MessageCircle size={20} className="text-[#FDB931]/80 group-hover:text-[#25D366] transition-colors" />
@@ -136,7 +168,7 @@ const Landing = () => {
                             <a
                                 href="mailto:augerbidjang@gmail.com"
                                 className="group"
-                                aria-label="Envoyez-nous un email"
+                                aria-label={t.email}
                             >
                                 <div className="w-11 h-11 rounded-full border-2 border-[#FDB931]/50 group-hover:border-white group-hover:scale-110 flex items-center justify-center transition-all duration-300 bg-white/5 backdrop-blur-sm">
                                     <Mail size={20} className="text-[#FDB931]/80 group-hover:text-white transition-colors" />

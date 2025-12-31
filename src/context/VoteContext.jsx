@@ -20,6 +20,11 @@ export const VoteProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [useBackend, setUseBackend] = useState(true);
+    const [language, setLanguage] = useState('FR'); // 'EN' or 'FR'
+
+    const switchLanguage = useCallback(() => {
+        setLanguage(prev => prev === 'FR' ? 'EN' : 'FR');
+    }, []);
 
     // Fetch data from backend on mount
     useEffect(() => {
@@ -232,7 +237,9 @@ export const VoteProvider = ({ children }) => {
         refetch,
         getGlobalRankings,
         getCategoryRankings,
-        getTotalVotes
+        getTotalVotes,
+        language,
+        switchLanguage
     };
 
     return (
