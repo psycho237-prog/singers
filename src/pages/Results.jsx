@@ -31,7 +31,7 @@ const Results = () => {
     };
 
     const getCategoryTitle = (categoryId) => {
-        return categories.find(c => c.id === categoryId)?.title || 'Unknown';
+        return categories.find(c => c.id === categoryId)?.title || 'Inconnue';
     };
 
     return (
@@ -98,7 +98,7 @@ const Results = () => {
                                 onClick={() => setSelectedCategoryId('global')}
                                 className={`px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest whitespace-nowrap border ${selectedCategoryId === 'global'
                                     ? 'bg-secondary border-secondary text-white' : 'bg-transparent border-white/10 text-gray-500'} transition-all`}>
-                                GLOBAL
+                                GÉNÉRAL
                             </button>
                             {categories.map(cat => (
                                 <button
@@ -147,7 +147,7 @@ const Results = () => {
                                             </p>
                                             <div className="flex gap-3">
                                                 <div className="flex flex-col">
-                                                    <span className="text-[8px] text-gray-500 uppercase font-bold tracking-tighter">Global</span>
+                                                    <span className="text-[8px] text-gray-500 uppercase font-bold tracking-tighter">Général</span>
                                                     <span className="text-xs font-black text-white">#{globalRank}</span>
                                                 </div>
                                                 <div className="flex flex-col">

@@ -1,77 +1,39 @@
 export const categories = [
-    {
-        id: 1,
-        title: 'Artist of the Year',
-        nominees: '12 Nominees',
-        image: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop',
-        featured: true
-    },
-    {
-        id: 2,
-        title: 'Best Male Vocalist',
-        nominees: '8 Nominees',
-        image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1000&auto=format&fit=crop'
-    },
-    {
-        id: 3,
-        title: 'Best Female Vocalist',
-        nominees: '8 Nominees',
-        image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop'
-    },
-    {
-        id: 4,
-        title: 'Best Newcomer',
-        nominees: '10 Nominees',
-        image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1000&auto=format&fit=crop'
-    },
-    {
-        id: 5,
-        title: 'Song of the Year',
-        nominees: '15 Nominees',
-        image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000&auto=format&fit=crop'
-    },
-    {
-        id: 6,
-        title: 'Album of the Year',
-        nominees: '10 Nominees',
-        image: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=1000&auto=format&fit=crop'
-    },
-    {
-        id: 7,
-        title: 'Best Group / Duo',
-        nominees: '6 Nominees',
-        image: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=1000&auto=format&fit=crop'
-    },
-    {
-        id: 8,
-        title: 'Best Music Video',
-        nominees: '12 Nominees',
-        image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000&auto=format&fit=crop'
-    },
-    {
-        id: 9,
-        title: 'Producer of the Year',
-        nominees: '8 Nominees',
-        image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1000&auto=format&fit=crop'
-    },
-    {
-        id: 10,
-        title: 'Best Collaboration',
-        nominees: '10 Nominees',
-        image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1000&auto=format&fit=crop'
-    },
-    {
-        id: 11,
-        title: 'Best Live Performance',
-        nominees: '8 Nominees',
-        image: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1000&auto=format&fit=crop'
-    },
-    {
-        id: 12,
-        title: 'Best Afrobeat Artist',
-        nominees: '12 Nominees',
-        image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop'
-    }
+    { id: 1, title: 'Album de l\'année', nominees: '12 Nommés', image: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=1000&auto=format&fit=crop', featured: true },
+    { id: 2, title: 'Chanson de l\'année', nominees: '15 Nommés', image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000&auto=format&fit=crop' },
+    { id: 3, title: 'Enregistrement de l\'année', nominees: '10 Nommés', image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1000&auto=format&fit=crop' },
+    { id: 4, title: 'Meilleur nouvel artiste', nominees: '8 Nommés', image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1000&auto=format&fit=crop' },
+    { id: 5, title: 'Meilleur clip vidéo', nominees: '12 Nommés', image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000&auto=format&fit=crop' },
+    { id: 6, title: 'Producteur de l\'année', nominees: '8 Nommés', image: 'https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=1000&auto=format&fit=crop' },
+    { id: 7, title: 'Meilleure chorégraphie dans un clip', nominees: '6 Nommés', image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1000&auto=format&fit=crop' },
+    { id: 8, title: 'Meilleure direction artistique dans un clip', nominees: '6 Nommés', image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1000&auto=format&fit=crop' },
+    { id: 9, title: 'Meilleure chanson de rap', nominees: '10 Nommés', image: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop' },
+    { id: 10, title: 'Meilleure performance rap', nominees: '8 Nommés', image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1000&auto=format&fit=crop' },
+    { id: 11, title: 'Meilleure collaboration rap/chant', nominees: '8 Nommés', image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1000&auto=format&fit=crop' },
+    { id: 12, title: 'Meilleure chanson afropop', nominees: '10 Nommés', image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop' },
+    { id: 13, title: 'Meilleure chanson afropop (Duo ou Groupe)', nominees: '6 Nommés', image: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=1000&auto=format&fit=crop' },
+    { id: 14, title: 'Meilleure chanson afro bikutsi', nominees: '8 Nommés', image: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=1000&auto=format&fit=crop' },
+    { id: 15, title: 'Meilleure chanson bikutsi (Duo ou Groupe)', nominees: '6 Nommés', image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1000&auto=format&fit=crop' },
+    { id: 16, title: 'Meilleur album/EP bikutsi', nominees: '5 Nommés', image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop' },
+    { id: 17, title: 'Meilleure chanson mbole', nominees: '10 Nommés', image: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1000&auto=format&fit=crop' },
+    { id: 18, title: 'Meilleure chanson mbole (Duo ou Groupe)', nominees: '6 Nommés', image: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop' },
+    { id: 19, title: 'Meilleure chanson makossa', nominees: '8 Nommés', image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000&auto=format&fit=crop' },
+    { id: 20, title: 'Meilleure chanson makossa (Duo ou Groupe)', nominees: '6 Nommés', image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop' },
+    { id: 21, title: 'Meilleur album/EP makossa', nominees: '5 Nommés', image: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=1000&auto=format&fit=crop' },
+    { id: 22, title: 'Meilleure chanson de musique traditionnelle', nominees: '8 Nommés', image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1000&auto=format&fit=crop' },
+    { id: 23, title: 'Meilleure chanson kpalum', nominees: '6 Nommés', image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop' },
+    { id: 24, title: 'Meilleure chanson bendskin', nominees: '8 Nommés', image: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1000&auto=format&fit=crop' },
+    { id: 25, title: 'Meilleure chanson gospel', nominees: '12 Nommés', image: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop' },
+    { id: 26, title: 'Meilleur album/EP gospel', nominees: '5 Nommés', image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000&auto=format&fit=crop' },
+    { id: 27, title: 'Meilleur album/EP de musique contemporaine', nominees: '5 Nommés', image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop' },
+    { id: 28, title: 'Meilleure bande sonore (Média Visuel)', nominees: '8 Nommés', image: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=1000&auto=format&fit=crop' },
+    { id: 29, title: 'Meilleur film musical', nominees: '6 Nommés', image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1000&auto=format&fit=crop' },
+    { id: 30, title: 'Meilleure pochette d\'album', nominees: '10 Nommés', image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop' },
+    { id: 31, title: 'Meilleur auteur-compositeur de l\'année', nominees: '8 Nommés', image: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1000&auto=format&fit=crop' },
+    { id: 32, title: 'Meilleur artiste de la diaspora', nominees: '10 Nommés', image: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=1000&auto=format&fit=crop' },
+    { id: 33, title: 'Meilleure chanson reggae/dancehall', nominees: '8 Nommés', image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000&auto=format&fit=crop' },
+    { id: 34, title: 'Meilleure chanson makune', nominees: '6 Nommés', image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop' },
+    { id: 35, title: 'Meilleure performance live', nominees: '8 Nommés', image: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=1000&auto=format&fit=crop' }
 ];
 
 export const nominees = [
@@ -83,9 +45,9 @@ export const nominees = [
         song: 'LAST LAST',
         votes: '12.4k',
         image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1000&auto=format&fit=crop',
-        tag: 'Top Contender',
-        description: 'The African Giant delivers a heartbreak anthem that conquered global charts with Afro-fusion.',
-        bio: 'Burna Boy is a Nigerian singer, songwriter and record producer. He rose to stardom in 2012 after releasing "Like to Party", the lead single from his debut studio album L.I.F.E. In 2017, Burna Boy signed with Bad Habit/Atlantic Records in the United States and Warner Music Group internationally.',
+        tag: 'Favori',
+        description: 'Le Géant Africain livre un hymne de rupture qui a conquis les charts mondiaux avec une fusion Afro.',
+        bio: 'Burna Boy est un chanteur, auteur-compositeur et producteur nigérian. Il a accédé à la célébrité en 2012 après la sortie de "Like to Party".',
         genre: 'AFRO-FUSION',
         country: '🇳🇬 Nigeria',
         rank: '#1',
@@ -103,8 +65,8 @@ export const nominees = [
         song: 'ESSENCE',
         votes: '10.5k',
         image: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=1000&auto=format&fit=crop',
-        description: 'Smooth soulful vibes that define the modern Afrobeat sound. A global sensation.',
-        bio: 'Ayodeji Ibrahim Balogun, known professionally as Wizkid, is a Nigerian singer and songwriter. A prominent figure in the modern-day Afrobeats music scene, Wizkid is regarded as one of the biggest and most influential African artists of all time.',
+        description: 'Des ondes soul fluides qui définissent le son Afrobeat moderne. Une sensation mondiale.',
+        bio: 'Ayodeji Ibrahim Balogun, connu sous le nom de Wizkid, est un chanteur et auteur-compositeur nigérian, figure emblématique de la scène Afrobeats.',
         genre: 'AFROBEATS',
         country: '🇳🇬 Nigeria',
         rank: '#2',
@@ -123,8 +85,8 @@ export const nominees = [
         song: 'UNAVAILABLE',
         votes: '9.8k',
         image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop',
-        description: 'High-energy club banger that showcases the king of modern Afropop at his best.',
-        bio: 'David Adedeji Adeleke, who is better known as Davido, is an American-born Nigerian singer, songwriter and record producer. Davido rose to fame after releasing "Dami Duro", the second single from his debut studio album Omo Baba Olowo.',
+        description: 'Un tube club énergique qui montre le roi de l\'Afropop moderne à son apogée.',
+        bio: 'David Adedeji Adeleke, alias Davido, est un chanteur, auteur-compositeur et producteur nigérian-américain.',
         genre: 'AFRO-POP',
         country: '🇳🇬 Nigeria',
         rank: '#3',
@@ -142,8 +104,8 @@ export const nominees = [
         song: 'PERU',
         votes: '8.7k',
         image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop',
-        description: 'Soulful melodies and infectious rhythms from one of Africa\'s brightest stars.',
-        bio: 'Adedamola Adefolahan, known professionally as Fireboy DML, is a Nigerian singer. He is signed to YBNL Nation, a record label founded by Nigerian rapper Olamide.',
+        description: 'Des mélodies pleines d\'âme et des rythmes contagieux de l\'une des stars les plus brillantes d\'Afrique.',
+        bio: 'Adedamola Adefolahan, connu sous le nom de Fireboy DML, est un chanteur nigérian signé chez YBNL Nation.',
         genre: 'AFRO-SOUL',
         country: '🇳🇬 Nigeria',
         rank: '#5',
@@ -161,8 +123,8 @@ export const nominees = [
         song: 'FREE MIND',
         votes: '11.2k',
         image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop',
-        description: 'Ethereal vocals and deeply personal lyrics from the leading voice of the new generation.',
-        bio: 'Temilade Openiyi, known professionally as Tems, is a Nigerian singer, songwriter and record producer. She rose to prominence after being featured on Wizkid\'s 2020 single "Essence".',
+        description: 'Une voix éthérée et des paroles profondément personnelles par la voix leader de la nouvelle génération.',
+        bio: 'Temilade Openiyi, connue sous le nom de Tems, est une chanteuse, compositrice et productrice nigériane.',
         genre: 'ALTÉ / R&B',
         country: '🇳🇬 Nigeria',
         rank: '#4',
@@ -179,8 +141,8 @@ export const nominees = [
         song: 'RUSH',
         votes: '10.1k',
         image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop',
-        description: 'The celestial queen of Afropop delivers a chart-topping anthem of confidence.',
-        bio: 'Oyinkansola Sarah Aderibigbe, known professionally as Ayra Starr, is a Beninese-born Nigerian singer. She began a fashion career at the age of 16 with Quat Management before deciding to pursue music.',
+        description: 'La reine céleste de l\'Afropop livre un hymne de confiance qui domine les charts.',
+        bio: 'Oyinkansola Sarah Aderibigbe, alias Ayra Starr, est une chanteuse nigériane née au Bénin.',
         genre: 'AFRO-POP',
         country: '🇳🇬 Nigeria',
         rank: '#6',
@@ -198,9 +160,9 @@ export const nominees = [
         song: 'LONELY AT THE TOP',
         votes: '15.6k',
         image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop',
-        tag: 'Rising Star',
-        description: 'The breakout sensation of the year with a unique blend of Fuji and Afrobeats.',
-        bio: 'Ahmed Ololade, known professionally as Asake, is a Nigerian singer and songwriter. He is signed to YBNL Nation and Empire Distribution.',
+        tag: 'Étoile Montante',
+        description: 'La sensation de l\'année avec un mélange unique de Fuji et d\'Afrobeats.',
+        bio: 'Ahmed Ololade, alias Asake, est un chanteur et auteur-compositeur nigérian.',
         genre: 'AFRO-FUJI',
         country: '🇳🇬 Nigeria',
         rank: '#7',
@@ -217,8 +179,8 @@ export const nominees = [
         song: 'CHANCE',
         votes: '9.2k',
         image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop',
-        description: 'Street-pop sensation bringing fresh energy to the Nigerian music scene.',
-        bio: 'Oluwaloseyi Akorede Balogun, known professionally as Seyi Vibez, is a Nigerian singer and songwriter.',
+        description: 'Sensation Street-pop apportant une nouvelle énergie à la scène musicale nigériane.',
+        bio: 'Oluwaloseyi Akorede Balogun, connu sous le nom de Seyi Vibez, est un chanteur nigérian.',
         genre: 'STREET-POP',
         country: '🇳🇬 Nigeria',
         rank: '#12',
@@ -235,9 +197,9 @@ export const nominees = [
         song: 'CALM DOWN',
         votes: '25.4k',
         image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop',
-        tag: 'Global Hit',
-        description: 'The biggest African song in history, breaking records across all continents.',
-        bio: 'Divine Ikubor, known professionally as Rema, is a Nigerian singer and rapper. He rose to stardom with the release of the song "Iron Man", which appeared on Barack Obama\'s 2019 summer playlist.',
+        tag: 'Succès Mondial',
+        description: 'La plus grande chanson africaine de l\'histoire, battant des records sur tous les continents.',
+        bio: 'Divine Ikubor, connu sous le nom de Rema, est un chanteur et rappeur nigérian.',
         genre: 'AFRO-RAVE',
         country: '🇳🇬 Nigeria',
         rank: '#1',
@@ -383,6 +345,6 @@ export const standings = [
 ];
 
 export const winners = [
-    { id: 1, category: 'Best Newcomer', name: 'Ayra Starr', year: '2025', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop' },
-    { id: 2, category: 'Song of the Year', name: 'Rema', year: '2025', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop' },
+    { id: 1, category: 'Meilleur nouvel artiste', name: 'Ayra Starr', year: '2025', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop' },
+    { id: 2, category: 'Chanson de l\'année', name: 'Rema', year: '2025', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop' },
 ];

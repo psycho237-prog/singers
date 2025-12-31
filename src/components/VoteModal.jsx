@@ -112,7 +112,7 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                             <X size={20} />
                         </button>
 
-                        <div className="p-8">
+                        <div className="p-8 pb-12">
                             {/* Nominee Info */}
                             <div className="flex flex-col items-center text-center mb-8">
                                 <div className="relative w-24 h-24 mb-4">
@@ -124,7 +124,9 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                 </div>
 
                                 <h3 className="text-2xl font-bold mb-1">{nominee.name}</h3>
-                                <p className="text-secondary text-xs font-bold uppercase tracking-widest mb-4">Best Male Vocalist</p>
+                                <p className="text-secondary text-xs font-bold uppercase tracking-widest mb-4">
+                                    {categories.find(c => c.id === nominee.categoryId)?.title || 'Catégorie'}
+                                </p>
 
                                 <Button
                                     variant="secondary"
@@ -333,7 +335,7 @@ const VoteModal = ({ isOpen, onClose, nominee }) => {
                                         {pollingMessage}
                                     </p>
                                     <p className="text-[10px] text-white/50 font-mono">
-                                        Processing {paymentMethod} • {phoneNumber} • {totalPrice} XAF
+                                        Traitement {paymentMethod} • {phoneNumber} • {totalPrice} XAF
                                     </p>
                                 </div>
                             )}

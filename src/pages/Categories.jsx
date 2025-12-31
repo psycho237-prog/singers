@@ -20,20 +20,16 @@ const Categories = () => {
     const displayedCategories = showAll ? otherCategories : otherCategories.slice(0, 4);
 
     const getIcon = (title) => {
-        switch (title) {
-            case 'Best Male Vocalist': return Mic2;
-            case 'Best Female Vocalist': return Heart;
-            case 'Best Newcomer': return Sparkles;
-            case 'Song of the Year': return Music;
-            case 'Album of the Year': return Disc;
-            case 'Best Group / Duo': return Users;
-            case 'Best Music Video': return Video;
-            case 'Producer of the Year': return Zap;
-            case 'Best Collaboration': return Users;
-            case 'Best Live Performance': return Radio;
-            case 'Best Afrobeat Artist': return SanzaTrophy;
-            default: return SanzaTrophy;
-        }
+        const lowerTitle = title.toLowerCase();
+        if (lowerTitle.includes('vocaliste') || lowerTitle.includes('rap')) return Mic2;
+        if (lowerTitle.includes('clip') || lowerTitle.includes('vidéo')) return Video;
+        if (lowerTitle.includes('artiste') || lowerTitle.includes('auteur')) return Sparkles;
+        if (lowerTitle.includes('chanson') || lowerTitle.includes('enregistrement')) return Music;
+        if (lowerTitle.includes('album') || lowerTitle.includes('ep')) return Disc;
+        if (lowerTitle.includes('producteur')) return Zap;
+        if (lowerTitle.includes('groupe') || lowerTitle.includes('duo')) return Users;
+        if (lowerTitle.includes('live') || lowerTitle.includes('performance')) return Radio;
+        return SanzaTrophy;
     };
 
     return (
@@ -86,25 +82,25 @@ const Categories = () => {
                                 <div>
                                     <h3 className="text-2xl font-bold">{featuredCategory.title}</h3>
                                     <p className="text-[10px] text-gray-300 uppercase tracking-widest">
-                                        Top Category • {featuredCategory.nominees} <br />
-                                        <span className="text-secondary font-bold">ENDS IN 20H</span>
+                                        Catégorie Vedette • {featuredCategory.nominees} <br />
+                                        <span className="text-secondary font-bold">FINIT DANS 20H</span>
                                     </p>
                                 </div>
                             </div>
                             <Button className="w-full py-3 rounded-xl font-bold bg-secondary hover:bg-secondary/90 text-white border-none text-xs">
-                                Vote Now
+                                Voter Maintenant
                             </Button>
                         </div>
                     </Card>
                 </Link>
 
                 <div className="flex justify-between items-center">
-                    <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">Browse Categories</h3>
+                    <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">Parcourir les catégories</h3>
                     <button
                         onClick={() => setShowAll(!showAll)}
                         className="text-[10px] text-secondary font-bold uppercase tracking-widest hover:underline"
                     >
-                        {showAll ? 'Show Less' : 'View All'}
+                        {showAll ? 'Voir moins' : 'Tout voir'}
                     </button>
                 </div>
 
@@ -135,7 +131,7 @@ const Categories = () => {
 
                                         <div className="absolute bottom-4 left-4 right-4">
                                             <span className="text-[8px] font-bold text-secondary uppercase tracking-[0.2em] mb-1 block">
-                                                VOTING OPEN
+                                                VOTE OUVERT
                                             </span>
                                             <h4 className="font-bold text-sm mb-1 leading-tight">{cat.title}</h4>
                                             <p className="text-[8px] text-gray-400 font-bold uppercase tracking-widest">{cat.nominees}</p>

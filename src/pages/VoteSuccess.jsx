@@ -20,7 +20,7 @@ const VoteSuccess = () => {
     if (!nominee) return null;
 
     const getCategoryTitle = (id) => {
-        return categories.find(c => c.id === id)?.title || 'Nominee';
+        return categories.find(c => c.id === id)?.title || 'Nommé';
     };
 
     return (
