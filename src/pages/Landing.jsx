@@ -53,12 +53,12 @@ const Landing = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    className="w-full relative min-h-[600px] flex flex-col items-center justify-center p-6"
+                    className="w-full relative min-h-[70vh] flex flex-col items-center justify-center p-6"
                 >
                     {/* Background Image */}
                     <div
                         className="absolute inset-0 z-0 bg-cover bg-center rounded-3xl overflow-hidden shadow-2xl"
-                        style={{ backgroundImage: 'url("/hero-bg.jpg")' }}
+                        style={{ backgroundImage: 'url("/hero-bg-2.jpg")' }}
                     />
 
                     {/* Content Overlay */}
@@ -78,7 +78,7 @@ const Landing = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 }}
-                            className="text-5xl md:text-7xl font-bold mb-2 tracking-tight text-primary drop-shadow-lg text-center"
+                            className="text-5xl md:text-8xl font-bold mb-0 tracking-tight drop-shadow-lg text-center bg-gradient-to-b from-[#FFD700] via-[#FDB931] to-[#C49102] bg-clip-text text-transparent"
                             style={{ fontFamily: 'serif' }}
                         >
                             Sanza
@@ -87,7 +87,7 @@ const Landing = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
-                            className="text-2xl md:text-4xl text-primary/90 font-medium mb-6 uppercase tracking-widest drop-shadow-md text-center"
+                            className="text-2xl md:text-5xl font-medium mb-8 uppercase tracking-widest drop-shadow-md text-center bg-gradient-to-r from-[#FFD700] via-[#FDB931] to-[#C49102] bg-clip-text text-transparent"
                         >
                             Music Awards
                         </motion.h2>
@@ -97,7 +97,7 @@ const Landing = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.6 }}
-                            className="text-white/80 text-[10px] md:text-xs tracking-[0.3em] uppercase mb-10 font-light text-center"
+                            className="text-white/90 text-xs md:text-sm tracking-[0.3em] uppercase mb-12 font-light text-center"
                         >
                             LÀ OÙ LES ÉTOILES DE LA MUSIQUE BRILLENT
                         </motion.p>
@@ -107,18 +107,18 @@ const Landing = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.7 }}
-                            className="flex flex-col md:flex-row gap-4 items-center mb-16 w-full justify-center"
+                            className="flex flex-col md:flex-row gap-6 items-center mb-16 w-full justify-center"
                         >
                             <Link to="/categories">
-                                <button className="px-8 py-3 bg-gradient-to-b from-[#FDB931] to-[#996515] text-white font-bold uppercase tracking-wider text-sm rounded shadow-[0_0_20px_rgba(255,215,0,0.3)] hover:scale-105 transition-transform min-w-[200px]">
+                                <button className="px-8 py-4 bg-gradient-to-b from-[#FFD700] via-[#FDB931] to-[#B8860B] text-white font-bold uppercase tracking-wider text-sm rounded-md shadow-[0_0_20px_rgba(255,215,0,0.4)] hover:scale-105 transition-transform min-w-[220px] border border-[#FFD700]/50">
                                     VOTEZ MAINTENANT
                                 </button>
                             </Link>
                             <button
                                 onClick={() => window.open('https://youtube.com', '_blank')}
-                                className="flex items-center gap-3 text-white/80 uppercase text-xs tracking-widest hover:text-white transition-colors group px-6 py-3 border border-white/20 rounded hover:bg-white/5"
+                                className="flex items-center gap-3 text-white/90 uppercase text-xs tracking-widest hover:text-white transition-colors group px-6 py-4 border border-white/20 rounded-md hover:bg-white/5"
                             >
-                                <span className="w-6 h-6 rounded-full border border-primary flex items-center justify-center group-hover:bg-primary/20 transition-colors text-primary">
+                                <span className="w-8 h-8 rounded-full border border-[#FFD700] flex items-center justify-center group-hover:bg-[#FFD700]/20 transition-colors text-[#FFD700]">
                                     ▶
                                 </span>
                                 REGARDER LA VIDÉO
