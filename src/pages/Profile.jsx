@@ -25,7 +25,7 @@ const Profile = () => {
     };
 
     return (
-        <div className="pb-40 relative bg-black min-h-screen text-white scrollbar-hide">
+        <div className="pb-32 relative bg-black min-h-screen text-white scrollbar-hide">
             {/* Hero Image */}
             <div className="relative h-[50vh]">
                 <motion.img
@@ -173,7 +173,7 @@ const Profile = () => {
                 initial={{ y: 100 }}
                 animate={{ y: 0 }}
                 transition={{ delay: 1, type: 'spring', stiffness: 100 }}
-                className="fixed bottom-10 left-6 right-6 z-40"
+                className="fixed bottom-24 left-6 right-6 z-40"
             >
                 <Button
                     className="w-full py-6 text-sm tracking-[0.2em] shadow-[0_20px_50px_rgba(217,70,239,0.4)] font-black rounded-[2rem] bg-secondary hover:bg-secondary/90 text-white border-none uppercase"

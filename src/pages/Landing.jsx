@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { LayoutGrid, Play, Mail, MessageCircle } from 'lucide-react';
+import { LayoutGrid, Mail, MessageCircle } from 'lucide-react';
 import SanzaTrophy from '../components/ui/SanzaTrophy';
 
 const Landing = () => {
@@ -116,15 +116,33 @@ const Landing = () => {
                             </button>
                         </Link>
 
-                        <button
-                            onClick={() => window.open('https://youtube.com', '_blank')}
-                            className="group flex items-center gap-4 text-[#FDB931]/90 hover:text-white transition-colors uppercase text-[10px] md:text-xs font-bold tracking-[0.3em]"
-                        >
-                            <div className="w-10 h-10 rounded-full border border-[#FDB931] group-hover:border-white group-hover:scale-110 flex items-center justify-center transition-all duration-300">
-                                <Play size={12} fill="currentColor" className="ml-1" />
-                            </div>
-                            Regarder la vidéo
-                        </button>
+
+                        {/* Contact Icons - Horizontal */}
+                        <div className="flex items-center justify-center gap-6">
+                            {/* WhatsApp Icon */}
+                            <a
+                                href="https://wa.me/237672274712"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group"
+                                aria-label="Contactez-nous sur WhatsApp"
+                            >
+                                <div className="w-11 h-11 rounded-full border-2 border-[#FDB931]/50 group-hover:border-[#25D366] group-hover:scale-110 flex items-center justify-center transition-all duration-300 bg-white/5 backdrop-blur-sm">
+                                    <MessageCircle size={20} className="text-[#FDB931]/80 group-hover:text-[#25D366] transition-colors" />
+                                </div>
+                            </a>
+
+                            {/* Email Icon */}
+                            <a
+                                href="mailto:augerbidjang@gmail.com"
+                                className="group"
+                                aria-label="Envoyez-nous un email"
+                            >
+                                <div className="w-11 h-11 rounded-full border-2 border-[#FDB931]/50 group-hover:border-white group-hover:scale-110 flex items-center justify-center transition-all duration-300 bg-white/5 backdrop-blur-sm">
+                                    <Mail size={20} className="text-[#FDB931]/80 group-hover:text-white transition-colors" />
+                                </div>
+                            </a>
+                        </div>
 
 
                     </motion.div>
