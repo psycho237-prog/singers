@@ -68,7 +68,7 @@ const Landing = () => {
                             initial={{ y: -20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.2 }}
-                            src="/sanza-logo.png"
+                            src="/sanza-logo-transparent.png"
                             alt="Sanza Trophy"
                             className="w-24 md:w-32 h-auto mb-4 drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"
                         />
