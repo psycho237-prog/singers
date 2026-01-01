@@ -34,6 +34,7 @@ function AnimatedRoutes() {
                         <Route path="categories" element={<Categories />} />
                         <Route path="nominees" element={<Nominees />} />
                         <Route path="profile" element={<Profile />} />
+                        <Route path="profile/:nomineeId" element={<Profile />} />
                         <Route path="results" element={<Results />} />
                         <Route path="vote-success" element={<VoteSuccess />} />
                         <Route path="admin-192025" element={<Admin />} />

@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
 import { ChevronLeft, Share2, Play, Pause, Heart, Check, Star, Music, Award, Globe } from 'lucide-react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useVotes } from '../context/VoteContext';
 import VoteModal from '../components/VoteModal';
 
@@ -50,8 +50,7 @@ const Profile = () => {
     const [isCopied, setIsCopied] = useState(false);
     const [isBioExpanded, setIsBioExpanded] = useState(false);
     const [showAllHits, setShowAllHits] = useState(false);
-    const [searchParams] = useSearchParams();
-    const nomineeId = searchParams.get('nomineeId');
+    const { nomineeId } = useParams();
 
     // Randomize nominee if no ID provided
     const nominee = useMemo(() => {
@@ -112,7 +111,7 @@ const Profile = () => {
 
     const handleShare = () => {
         const url = new URL(window.location.href);
-        if (nominee) url.searchParams.set('nomineeId', nominee.id);
+
         navigator.clipboard.writeText(url.toString());
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 2000);

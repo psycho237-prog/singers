@@ -50,14 +50,7 @@ const Nominees = () => {
     const [copiedId, setCopiedId] = useState(null);
 
     useEffect(() => {
-        const nomineeId = searchParams.get('nomineeId');
-        if (nomineeId) {
-            const nominee = allNominees.find(n => n.id === parseInt(nomineeId));
-            if (nominee) {
-                setSelectedNominee(nominee);
-                setIsVoteModalOpen(true);
-            }
-        }
+        // Handle URL parameters if needed, but simplified for now
     }, [searchParams]);
 
     const handleVoteClick = (nominee) => {
@@ -73,8 +66,7 @@ const Nominees = () => {
     const handleShare = (e, nominee) => {
         e.preventDefault();
         e.stopPropagation();
-        const url = new URL(window.location.href);
-        url.searchParams.set('nomineeId', nominee.id);
+        const url = new URL(`${window.location.origin}/profile/${nominee.id}`);
         navigator.clipboard.writeText(url.toString());
         setCopiedId(nominee.id);
         setTimeout(() => setCopiedId(null), 2000);
@@ -141,7 +133,7 @@ const Nominees = () => {
                             transition={{ delay: index * 0.1 }}
                         >
                             <Card className="p-0 overflow-hidden border-none bg-[#1a1a1a] group rounded-[2.5rem]">
-                                <Link to={`/profile?nomineeId=${nominee.id}`} className="block relative h-64">
+                                <Link to={`/profile/${nominee.id}`} className="block relative h-64">
                                     <img
                                         src={nominee.image}
                                         alt={nominee.name}
