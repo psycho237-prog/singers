@@ -71,8 +71,7 @@ export function validateConfig(): boolean {
     const missing = required.filter(key => !process.env[key]);
 
     if (missing.length > 0 && config.nodeEnv === 'production') {
-        console.error(`❌ Missing required environment variables: ${missing.join(', ')}. App may not function correctly.`);
-        // Don't throw to allow maintenance routes or fallback mode
+        throw new Error(`Missing required environment variables: ${missing.join(', ')}`);
     }
 
     return true;

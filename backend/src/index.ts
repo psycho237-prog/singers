@@ -45,35 +45,7 @@ app.get('/api/health', (req: Request, res: Response) => {
         timestamp: new Date().toISOString(),
         version: '1.0.0',
         environment: config.nodeEnv,
-        database: getDb() ? 'connected' : 'mock'
     });
-});
-
-// Maintenance route - Reset all votes (Temporary)
-app.post('/api/maintenance/reset-votes', async (req: Request, res: Response) => {
-    try {
-        const db = getDb();
-        if (!db) {
-            return res.json({ message: 'Not using Firebase - Local mock data is already reset.' });
-        }
-
-        const snapshot = await db.ref('nominees').once('value');
-        const updates: any = {};
-
-        if (snapshot.exists()) {
-            snapshot.forEach(child => {
-                updates[`nominees/${child.key}/votes`] = 0;
-            });
-        }
-
-        // Also clear transactions
-        await db.ref('transactions').set(null);
-        await db.ref().update(updates);
-
-        res.json({ success: true, message: 'All votes and transactions have been reset in Firebase.' });
-    } catch (err: any) {
-        res.status(500).json({ error: err.message });
-    }
 });
 
 // API Routes
