@@ -25,28 +25,11 @@ const Landing = () => {
     }[language];
 
     return (
-        <div className="flex flex-col min-h-screen bg-[#051040] text-white pb-24 font-sans overflow-x-hidden relative">
-            {/* Responsive Luxury Background */}
-            <div className="fixed inset-0 z-0 overflow-hidden bg-[#051040]">
-                <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 scale-105 opacity-100"
-                    style={{
-                        backgroundImage: 'var(--hero-bg)'
-                    }}
-                />
-                <style dangerouslySetInnerHTML={{
-                    __html: `
-                    :root { --hero-bg: url("/hero-bg-mobile.png"); }
-                    @media (min-width: 768px) {
-                        :root { --hero-bg: url("/hero-bg-2.jpg"); }
-                    }
-                `}} />
-
-                {/* Supporting Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-b from-[#051040]/40 via-transparent to-[#051040] z-[1]" />
-
-                {/* Center Glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_rgba(253,185,49,0.1)_0%,_rgba(5,16,64,0)_70%)] z-[1]" />
+        <div className="flex flex-col min-h-screen bg-transparent text-white pb-24 font-sans overflow-x-hidden relative">
+            {/* Ambient Overlays for depth */}
+            <div className="fixed inset-0 z-0 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-[1]" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_rgba(253,185,49,0.15)_0%,_rgba(0,0,0,0)_70%)] z-[1]" />
             </div>
 
             {/* Header */}

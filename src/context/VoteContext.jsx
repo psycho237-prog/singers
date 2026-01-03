@@ -58,8 +58,8 @@ export const VoteProvider = ({ children }) => {
 
                 const transformedCategories = categoriesData.map(c => ({
                     id: c.id,
-                    title: c.title,
-                    nominees: c.nominees_count,
+                    title: language === 'FR' ? c.title : (c.titleEn || c.title),
+                    nominees: language === 'FR' ? (c.nominees_count || c.nominees) : (c.nominees_count || c.nominees)?.toString().replace('Nommés', 'Nominees'),
                     image: c.image_url,
                     featured: c.featured,
                 }));
@@ -82,15 +82,20 @@ export const VoteProvider = ({ children }) => {
                 if (savedTransactions) setTransactions(JSON.parse(savedTransactions));
                 if (savedRevenue) setTotalRevenue(JSON.parse(savedRevenue));
 
-                // Ensure categories are set to initial if backend fails
-                setCategories(initialCategories);
+                // Ensure categories are set to initial with translation
+                const translatedCategories = initialCategories.map(c => ({
+                    ...c,
+                    title: language === 'FR' ? c.title : (c.titleEn || c.title),
+                    nominees: language === 'FR' ? c.nominees : c.nominees.replace('Nommés', 'Nominees')
+                }));
+                setCategories(translatedCategories);
             } finally {
                 setIsLoading(false);
             }
         };
 
         fetchData();
-    }, []);
+    }, [language]); // Depend on language to re-fetch/re-translate
 
     // Save to localStorage as backup when not using backend
     useEffect(() => {

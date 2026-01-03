@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { mockData } from '../config/database.js';
 import { getDb } from '../config/firebase.js';
+import { calculatePercentages } from '../utils/percentageCalculator.js';
 
 const router = Router();
 
@@ -21,30 +22,28 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
         const { categoryId } = req.query;
         const db = getDb();
 
+        let rawNominees: any[] = [];
         if (!db) {
-            let nominees = mockData.nominees;
-            if (categoryId) {
-                nominees = nominees.filter(n => n.category_id === parseInt(categoryId as string));
-            }
-            return res.json(nominees.map(n => ({ ...n, votes_display: formatVotes(n.votes) })));
-        }
-
-        const snapshot = await db.ref('nominees').once('value');
-        let nominees: any[] = [];
-        if (snapshot.exists()) {
-            snapshot.forEach(child => {
-                nominees.push({ id: child.key, ...child.val() });
-                return false;
-            });
+            rawNominees = mockData.nominees;
         } else {
-            nominees = mockData.nominees;
+            const snapshot = await db.ref('nominees').once('value');
+            if (snapshot.exists()) {
+                snapshot.forEach(child => {
+                    rawNominees.push({ id: child.key, ...child.val() });
+                    return false;
+                });
+            } else {
+                rawNominees = mockData.nominees;
+            }
         }
 
         if (categoryId) {
-            nominees = nominees.filter(n => n.category_id === parseInt(categoryId as string));
+            rawNominees = rawNominees.filter(n => String(n.category_id) === String(categoryId));
         }
 
-        res.json(nominees.map(n => ({
+        const enrichedNominees = calculatePercentages(rawNominees);
+
+        res.json(enrichedNominees.map(n => ({
             ...n,
             votes_display: formatVotes(n.votes || 0)
         })).sort((a, b) => (b.votes || 0) - (a.votes || 0)));

@@ -55,14 +55,15 @@ const Categories = () => {
 
     const getIcon = (title) => {
         const lowerTitle = title.toLowerCase();
-        if (lowerTitle.includes('vocaliste') || lowerTitle.includes('rap')) return Mic2;
-        if (lowerTitle.includes('clip') || lowerTitle.includes('vidéo')) return Video;
-        if (lowerTitle.includes('artiste') || lowerTitle.includes('auteur')) return Sparkles;
-        if (lowerTitle.includes('chanson') || lowerTitle.includes('enregistrement')) return Music;
-        if (lowerTitle.includes('album') || lowerTitle.includes('ep')) return Disc;
-        if (lowerTitle.includes('producteur')) return Zap;
-        if (lowerTitle.includes('groupe') || lowerTitle.includes('duo')) return Users;
-        if (lowerTitle.includes('live') || lowerTitle.includes('performance')) return Radio;
+        if (lowerTitle.includes('vocaliste') || lowerTitle.includes('vocalist') || lowerTitle.includes('rap')) return Mic2;
+        if (lowerTitle.includes('clip') || lowerTitle.includes('vidéo') || lowerTitle.includes('video')) return Video;
+        if (lowerTitle.includes('artiste') || lowerTitle.includes('artist') || lowerTitle.includes('auteur') || lowerTitle.includes('author')) return Sparkles;
+        if (lowerTitle.includes('chanson') || lowerTitle.includes('song') || lowerTitle.includes('enregistrement') || lowerTitle.includes('soundtrack')) return Music;
+        if (lowerTitle.includes('album') || lowerTitle.includes('ep') || lowerTitle.includes('disc')) return Disc;
+        if (lowerTitle.includes('producteur') || lowerTitle.includes('producer') || lowerTitle.includes('zap')) return Zap;
+        if (lowerTitle.includes('groupe') || lowerTitle.includes('group') || lowerTitle.includes('duo')) return Users;
+        if (lowerTitle.includes('live') || lowerTitle.includes('performance') || lowerTitle.includes('radio')) return Radio;
+        if (lowerTitle.includes('globe') || lowerTitle.includes('diaspora') || lowerTitle.includes('world')) return Globe;
         return SanzaTrophy;
     };
 

@@ -17,10 +17,18 @@ const Layout = () => {
 
     return (
         <div className="min-h-screen bg-black text-white overflow-hidden relative font-sans">
-            {/* Background Gradients */}
+            {/* Premium Background */}
+            <div
+                className="fixed inset-0 z-0 pointer-events-none bg-cover bg-center bg-no-repeat bg-fixed opacity-60 mix-blend-screen"
+                style={{
+                    backgroundImage: 'url("/premium-bg.png")',
+                    backgroundSize: 'cover',
+                }}
+            />
+            {/* Background Glows Overlay */}
             <div className="fixed inset-0 z-0 pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px]" />
+                <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[120px]" />
             </div>
 
             {/* Main Content */}
