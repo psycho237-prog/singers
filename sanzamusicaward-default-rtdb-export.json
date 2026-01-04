@@ -1,0 +1,271 @@
+{
+  "categories": {
+    "cat_01": {
+      "featured": true,
+      "image_url": "/images/categories/cat-album.png",
+      "nominees_count": "0 Nominees",
+      "title": "Album of The Year"
+    },
+    "cat_02": {
+      "featured": false,
+      "image_url": "/images/categories/cat-song.png",
+      "nominees_count": "0 Nominees",
+      "title": "Song of The Year"
+    },
+    "cat_03": {
+      "featured": false,
+      "image_url": "/images/categories/cat-album.png",
+      "nominees_count": "0 Nominees",
+      "title": "Record of The Year"
+    },
+    "cat_04": {
+      "featured": false,
+      "image_url": "/images/categories/cat-artist.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best New Artist"
+    },
+    "cat_05": {
+      "featured": false,
+      "image_url": "/images/categories/cat-video.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Music Video"
+    },
+    "cat_06": {
+      "featured": false,
+      "image_url": "/images/categories/cat-artist.png",
+      "nominees_count": "0 Nominees",
+      "title": "Producer of The Year"
+    },
+    "cat_07": {
+      "featured": false,
+      "image_url": "/images/categories/cat-video.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Choregraphy in a Music Video"
+    },
+    "cat_08": {
+      "featured": false,
+      "image_url": "/images/categories/cat-video.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Art Direction in a Music Video"
+    },
+    "cat_09": {
+      "featured": false,
+      "image_url": "/images/categories/cat-video.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Visual Effects in a Music Video"
+    },
+    "cat_10": {
+      "featured": false,
+      "image_url": "/images/categories/cat-song.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Rap Song"
+    },
+    "cat_11": {
+      "featured": false,
+      "image_url": "/images/categories/cat-song.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Rap Performance"
+    },
+    "cat_12": {
+      "featured": false,
+      "image_url": "/images/categories/cat-song.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Rap/Sung Collab"
+    },
+    "cat_13": {
+      "featured": false,
+      "image_url": "/images/categories/cat-album.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Rap Album/Ep"
+    },
+    "cat_14": {
+      "featured": false,
+      "image_url": "/images/categories/cat-song.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Afropop Song"
+    },
+    "cat_15": {
+      "featured": false,
+      "image_url": "/images/categories/cat-artist.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Afropop Song by Duo or Group"
+    },
+    "cat_16": {
+      "featured": false,
+      "image_url": "/images/categories/cat-album.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Afropop Album/Ep"
+    },
+    "cat_17": {
+      "featured": false,
+      "image_url": "/images/categories/cat-traditional.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Bikutsi Song"
+    },
+    "cat_18": {
+      "featured": false,
+      "image_url": "/images/categories/cat-traditional.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Bikutsi Song by Duo or Group"
+    },
+    "cat_19": {
+      "featured": false,
+      "image_url": "/images/categories/cat-album.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Bikutsi Album/Ep"
+    },
+    "cat_20": {
+      "featured": false,
+      "image_url": "/images/categories/cat-traditional.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Mbole Song"
+    },
+    "cat_21": {
+      "featured": false,
+      "image_url": "/images/categories/cat-traditional.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Mbole Song by Duo or Group"
+    },
+    "cat_22": {
+      "featured": false,
+      "image_url": "/images/categories/cat-traditional.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Makossa Song"
+    },
+    "cat_23": {
+      "featured": false,
+      "image_url": "/images/categories/cat-traditional.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Makossa Song by Duo or Group"
+    },
+    "cat_24": {
+      "featured": false,
+      "image_url": "/images/categories/cat-album.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Makossa Album/Ep"
+    },
+    "cat_25": {
+      "featured": false,
+      "image_url": "/images/categories/cat-traditional.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Traditional Music Song"
+    },
+    "cat_26": {
+      "featured": false,
+      "image_url": "/images/categories/cat-song.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Kpalum Music Song"
+    },
+    "cat_27": {
+      "featured": false,
+      "image_url": "/images/categories/cat-traditional.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Bendskin Song"
+    },
+    "cat_28": {
+      "featured": false,
+      "image_url": "/images/categories/cat-song.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Gospel Music Song"
+    },
+    "cat_29": {
+      "featured": false,
+      "image_url": "/images/categories/cat-album.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Gospel Music Album/Ep"
+    },
+    "cat_30": {
+      "featured": false,
+      "image_url": "/images/categories/cat-song.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Contemporary Music Song"
+    },
+    "cat_31": {
+      "featured": false,
+      "image_url": "/images/categories/cat-album.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Contemporary Music Album/Ep"
+    },
+    "cat_32": {
+      "featured": false,
+      "image_url": "/images/categories/cat-video.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Soundtrack for Visual Media"
+    },
+    "cat_33": {
+      "featured": false,
+      "image_url": "/images/categories/cat-video.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Music Film"
+    },
+    "cat_34": {
+      "featured": false,
+      "image_url": "/images/categories/cat-album.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Album Cover"
+    },
+    "cat_35": {
+      "featured": false,
+      "image_url": "/images/categories/cat-artist.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Songwriter of The Year"
+    },
+    "cat_36": {
+      "featured": false,
+      "image_url": "/images/categories/cat-artist.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Diaspora Artist"
+    },
+    "cat_37": {
+      "featured": false,
+      "image_url": "/images/categories/cat-song.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Reggae/Dance hall song"
+    },
+    "cat_38": {
+      "featured": false,
+      "image_url": "/images/categories/cat-song.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Makune Song"
+    },
+    "cat_39": {
+      "featured": false,
+      "image_url": "/images/categories/cat-song.png",
+      "nominees_count": "0 Nominees",
+      "title": "Best Live Performance"
+    }
+  },
+  "nominees": {
+    "nom_01": {
+      "category_id": "cat_01",
+      "country": "🇨🇲 Cameroon",
+      "description": "Short description of the work.",
+      "genre": "Genre",
+      "image_url": "/images/categories/cat-artist.png",
+      "name": "Artist 1",
+      "song": "Album Title 1",
+      "tag": "Nominated",
+      "votes": 0
+    },
+    "nom_02": {
+      "category_id": "cat_01",
+      "country": "🇨🇲 Cameroon",
+      "description": "Short description of the work.",
+      "genre": "Genre",
+      "image_url": "/images/categories/cat-artist.png",
+      "name": "Artist 2",
+      "song": "Album Title 2",
+      "tag": "Nominated",
+      "votes": 0
+    }
+  },
+  "stats": {
+    "failedTransactions": 0,
+    "pendingTransactions": 0,
+    "successRate": 100,
+    "successfulTransactions": 0,
+    "totalRevenue": 0,
+    "totalTransactions": 0,
+    "totalVotes": 0
+  }
+}
