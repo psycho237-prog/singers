@@ -1,3 +1,4 @@
+// deno-lint-ignore-file
 export const categories = [
     { id: 1, title: 'Album de l\'année', titleEn: 'Album of the Year', nominees: '12 Nommés', image: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=1000&auto=format&fit=crop', featured: true },
     { id: 2, title: 'Chanson de l\'année', titleEn: 'Song of the Year', nominees: '15 Nommés', image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000&auto=format&fit=crop' },

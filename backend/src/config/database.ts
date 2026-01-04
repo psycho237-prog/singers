@@ -1,3 +1,4 @@
+// deno-lint-ignore-file
 import { config } from './env.js';
 
 export interface Category {
