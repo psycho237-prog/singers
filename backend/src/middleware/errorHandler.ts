@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
+import process from 'node:process';
 
-export function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
+export function errorHandler(err: Error & { status?: number; code?: string; stack?: string }, _req: Request, res: Response, _next: NextFunction) {
     console.error('Error:', err);
 
     // Handle specific error types

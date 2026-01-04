@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { config } from '../config/env.js';
 
 export interface AuthRequest extends Request {
-    admin?: any;
+    admin?: unknown;
 }
 
 export function authMiddleware(req: AuthRequest, res: Response, next: NextFunction) {
@@ -19,7 +19,7 @@ export function authMiddleware(req: AuthRequest, res: Response, next: NextFuncti
         const decoded = jwt.verify(token, config.jwt.secret);
         req.admin = decoded;
         next();
-    } catch (err) {
+    } catch (_err) {
         return res.status(401).json({ error: 'Invalid or expired token' });
     }
 }

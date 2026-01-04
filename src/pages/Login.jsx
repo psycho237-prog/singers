@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
-import { Mail, Lock, Apple, Smartphone, ArrowRight, Github, Facebook, Star } from 'lucide-react';
+import { Mail, Lock, Apple, ArrowRight, Facebook, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {

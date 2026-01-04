@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
@@ -34,12 +34,12 @@ const limiter = rateLimit({
     max: 1000, // 1000 requests per minute
     standardHeaders: true,
     legacyHeaders: false,
-    message: { error: 'Too many requests, please try again later.' } as any,
+    message: { error: 'Too many requests, please try again later.' },
 });
 app.use(limiter);
 
 // Health check
-app.get('/api/health', (req: Request, res: Response) => {
+app.get('/api/health', (_req: Request, res: Response) => {
     res.json({
         status: 'ok',
         timestamp: new Date().toISOString(),
@@ -60,7 +60,7 @@ app.use('/api/admin', adminRouter);
 app.use(errorHandler);
 
 // 404 handler
-app.use((req: Request, res: Response) => {
+app.use((_req: Request, res: Response) => {
     res.status(404).json({ error: 'Endpoint not found' });
 });
 

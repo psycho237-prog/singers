@@ -28,7 +28,7 @@ const VoteSuccess = () => {
             nominee: "Nominee"
         }
     }[language];
-    const { nominee, voteCount } = location.state || {};
+    const { nominee, voteCount: _voteCount } = location.state || {};
 
     useEffect(() => {
         if (!nominee) {

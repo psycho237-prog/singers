@@ -1,5 +1,6 @@
-import { admin, getDb } from '../config/firebase.js';
+import { getDb } from '../config/firebase.js';
 import { mockData } from '../config/database.js';
+import process from 'node:process';
 
 async function seed() {
     console.log('🌱 Starting database seeding...');
@@ -16,7 +17,7 @@ async function seed() {
         const categoriesRef = db.ref('categories');
 
         // Convert array to object with IDs as keys for RTDB
-        const categoriesObj: any = {};
+        const categoriesObj: Record<string, unknown> = {};
         mockData.categories.forEach(cat => {
             categoriesObj[cat.id] = {
                 title: cat.title,
@@ -33,7 +34,7 @@ async function seed() {
         console.log('👤 Seeding nominees...');
         const nomineesRef = db.ref('nominees');
 
-        const nomineesObj: any = {};
+        const nomineesObj: Record<string, unknown> = {};
         mockData.nominees.forEach(nom => {
             nomineesObj[nom.id] = {
                 category_id: nom.category_id,

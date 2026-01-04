@@ -3,10 +3,16 @@
  * Percentage = (nominee votes / total votes in category) * 100
  */
 
-export function calculatePercentages(nominees: any[]): any[] {
-    if (!nominees || nominees.length === 0) return nominees;
+interface NomineeData {
+    category_id?: string | number;
+    categoryId?: string | number;
+    votes: string | number;
+}
 
-    const categoriesMap = new Map<string, any[]>();
+export function calculatePercentages<T extends NomineeData>(nominees: T[]): (T & { percentage: number; totalVotesInCategory: number })[] {
+    if (!nominees || nominees.length === 0) return [];
+
+    const categoriesMap = new Map<string, T[]>();
 
     nominees.forEach((nominee) => {
         const categoryId = String(nominee?.category_id || nominee?.categoryId || 'unknown');
@@ -20,9 +26,9 @@ export function calculatePercentages(nominees: any[]): any[] {
         const categoryId = String(nominee?.category_id || nominee?.categoryId || 'unknown');
         const categoryGroup = categoriesMap.get(categoryId) || [];
 
-        const totalVotesInCategory = categoryGroup.reduce((sum, n) => sum + (parseInt(n.votes) || 0), 0);
+        const totalVotesInCategory = categoryGroup.reduce((sum, n) => sum + (parseInt(String(n.votes)) || 0), 0);
 
-        const currentVotes = parseInt(nominee.votes) || 0;
+        const currentVotes = parseInt(String(nominee.votes)) || 0;
         const percentage = totalVotesInCategory > 0
             ? Math.round((currentVotes / totalVotesInCategory) * 100)
             : 0;

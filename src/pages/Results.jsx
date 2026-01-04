@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
-import { Star, TrendingUp, ChevronLeft, Search, Medal, Crown, Filter, Globe } from 'lucide-react';
+import { TrendingUp, ChevronLeft, Search, Globe } from 'lucide-react';
 import SanzaTrophy from '../components/ui/SanzaTrophy';
 import { Link } from 'react-router-dom';
 import SearchOverlay from '../components/SearchOverlay';
