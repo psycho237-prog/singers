@@ -56,6 +56,58 @@ app.use('/api/payments', paymentsRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/admin', adminRouter);
 
+import { getDb } from './config/firebase.js';
+import { mockData } from './config/database.js';
+
+// Maintenance Route - Seed/Reset Database (Temporary)
+app.post('/api/maintenance/seed-db', async (_req: Request, res: Response) => {
+    try {
+        const db = getDb();
+        if (!db) {
+            return res.status(503).json({ error: 'Firebase not initialized' });
+        }
+
+        console.log('🌱 Starting database seeding from API trigger...');
+
+        // 1. Seed Categories
+        const categoriesRef = db.ref('categories');
+        const categoriesObj: Record<string, unknown> = {};
+        mockData.categories.forEach(cat => {
+            categoriesObj[cat.id] = {
+                title: cat.title,
+                nominees_count: cat.nominees_count,
+                image_url: cat.image_url,
+                featured: cat.featured
+            };
+        });
+        await categoriesRef.set(categoriesObj);
+
+        // 2. Seed Nominees
+        const nomineesRef = db.ref('nominees');
+        const nomineesObj: Record<string, unknown> = {};
+        mockData.nominees.forEach(nom => {
+            nomineesObj[nom.id] = {
+                category_id: nom.category_id,
+                name: nom.name,
+                song: nom.song,
+                votes: nom.votes,
+                image_url: nom.image_url,
+                tag: nom.tag,
+                description: nom.description,
+                bio: nom.bio || '',
+                genre: nom.genre,
+                country: nom.country
+            };
+        });
+        await nomineesRef.set(nomineesObj);
+
+        res.json({ success: true, message: 'Database seeded successfully with new data' });
+    } catch (err: any) {
+        console.error('Seeding error:', err);
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // Error handling
 app.use(errorHandler);
 
