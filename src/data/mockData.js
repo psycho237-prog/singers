@@ -37,311 +37,529 @@ export const categories = [
 ];
 
 export const nominees = [
-    // Artist of the Year (Category 1)
     {
         id: 1,
         categoryId: 1,
-        name: 'Burna Boy',
-        song: 'LAST LAST',
+        name: 'Mr Leo',
+        song: 'Coeur de Lion',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1000&auto=format&fit=crop',
-        tag: 'Favori',
-        description: 'Le Géant Africain livre un hymne de rupture qui a conquis les charts mondiaux avec une fusion Afro.',
-        bio: 'Burna Boy est un chanteur, auteur-compositeur et producteur nigérian. Il a accédé à la célébrité en 2012 après la sortie de "Like to Party".',
-        genre: 'AFRO-FUSION',
-        country: '🇳🇬 Nigeria',
-        rank: '#1',
-        listeners: '15.4M',
-        hits: [
-            { title: 'Last Last', album: 'Love, Damini', duration: '2:52', cover: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Ye', album: 'Outside', duration: '3:51', cover: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=100&auto=format&fit=crop' },
-            { title: 'On the Low', album: 'African Giant', duration: '3:05', cover: 'https://images.unsplash.com/photo-1459749411177-042180ce673c?q=80&w=100&auto=format&fit=crop' }
-        ]
+        image: '/assets/nominees/album_of_the_year/Coeur_de_Lion_Mr_Leo.jpg',
+        tag: null,
+        description: 'Nominee in category 1',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
     },
     {
         id: 2,
         categoryId: 1,
-        name: 'Wizkid',
-        song: 'ESSENCE',
+        name: 'Beri Boys Club',
+        song: 'Deluxe Vol 1',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=1000&auto=format&fit=crop',
-        description: 'Des ondes soul fluides qui définissent le son Afrobeat moderne. Une sensation mondiale.',
-        bio: 'Ayodeji Ibrahim Balogun, connu sous le nom de Wizkid, est un chanteur et auteur-compositeur nigérian, figure emblématique de la scène Afrobeats.',
-        genre: 'AFROBEATS',
-        country: '🇳🇬 Nigeria',
-        rank: '#2',
-        listeners: '12.1M',
-        hits: [
-            { title: 'Essence', album: 'Made in Lagos', duration: '4:08', cover: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Ojuelegba', album: 'Ayo', duration: '3:11', cover: 'https://images.unsplash.com/photo-1520529277867-dbf8c5e0b330?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Joro', album: 'Single', duration: '4:22', cover: 'https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=100&auto=format&fit=crop' }
-        ]
+        image: '/assets/nominees/album_of_the_year/Deluxe_Vol_1_Beri_Boys_Club.jpg',
+        tag: null,
+        description: 'Nominee in category 1',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
     },
-    // Best Male Vocalist (Category 2)
     {
         id: 3,
-        categoryId: 2,
-        name: 'Davido',
-        song: 'UNAVAILABLE',
+        categoryId: 1,
+        name: 'Lucky+2',
+        song: 'Ecouralors',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop',
-        description: 'Un tube club énergique qui montre le roi de l\'Afropop moderne à son apogée.',
-        bio: 'David Adedeji Adeleke, alias Davido, est un chanteur, auteur-compositeur et producteur nigérian-américain.',
+        image: '/assets/nominees/album_of_the_year/Ecouralors_Lucky+2.jpg',
+        tag: null,
+        description: 'Nominee in category 1',
         genre: 'AFRO-POP',
-        country: '🇳🇬 Nigeria',
-        rank: '#3',
-        listeners: '10.8M',
-        hits: [
-            { title: 'Unavailable', album: 'Timeless', duration: '2:50', cover: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Fall', album: 'A Good Time', duration: '4:00', cover: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=100&auto=format&fit=crop' },
-            { title: 'If', album: 'A Good Time', duration: '3:57', cover: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=100&auto=format&fit=crop' }
-        ]
+        country: '🇨🇲 Cameroon'
     },
     {
         id: 4,
-        categoryId: 2,
-        name: 'Fireboy DML',
-        song: 'PERU',
+        categoryId: 1,
+        name: 'Krys M',
+        song: 'Empreinte',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop',
-        description: 'Des mélodies pleines d\'âme et des rythmes contagieux de l\'une des stars les plus brillantes d\'Afrique.',
-        bio: 'Adedamola Adefolahan, connu sous le nom de Fireboy DML, est un chanteur nigérian signé chez YBNL Nation.',
-        genre: 'AFRO-SOUL',
-        country: '🇳🇬 Nigeria',
-        rank: '#5',
-        listeners: '8.5M',
-        hits: [
-            { title: 'Peru', album: 'Playboy', duration: '3:07', cover: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Jealous', album: 'Laughter, Tears & Goosebumps', duration: '3:36', cover: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=100&auto=format&fit=crop' }
-        ]
+        image: '/assets/nominees/album_of_the_year/Empreinte_krys_M.jpg',
+        tag: null,
+        description: 'Nominee in category 1',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
     },
-    // Best Female Vocalist (Category 3)
     {
         id: 5,
-        categoryId: 3,
-        name: 'Tems',
-        song: 'FREE MIND',
+        categoryId: 1,
+        name: 'Cysoul',
+        song: 'Entracte',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop',
-        description: 'Une voix éthérée et des paroles profondément personnelles par la voix leader de la nouvelle génération.',
-        bio: 'Temilade Openiyi, connue sous le nom de Tems, est une chanteuse, compositrice et productrice nigériane.',
-        genre: 'ALTÉ / R&B',
-        country: '🇳🇬 Nigeria',
-        rank: '#4',
-        listeners: '18.2M',
-        hits: [
-            { title: 'Free Mind', album: 'For Broken Ears', duration: '4:07', cover: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Higher', album: 'For Broken Ears', duration: '3:16', cover: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=100&auto=format&fit=crop' }
-        ]
+        image: '/assets/nominees/album_of_the_year/Entracte_Cysoul.jpg',
+        tag: null,
+        description: 'Nominee in category 1',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
     },
     {
         id: 6,
-        categoryId: 3,
-        name: 'Ayra Starr',
-        song: 'RUSH',
+        categoryId: 1,
+        name: 'Dice OMG',
+        song: 'Holiday Season',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop',
-        description: 'La reine céleste de l\'Afropop livre un hymne de confiance qui domine les charts.',
-        bio: 'Oyinkansola Sarah Aderibigbe, alias Ayra Starr, est une chanteuse nigériane née au Bénin.',
+        image: '/assets/nominees/album_of_the_year/Holiday_season_Dice_OMG.jpg',
+        tag: null,
+        description: 'Nominee in category 1',
         genre: 'AFRO-POP',
-        country: '🇳🇬 Nigeria',
-        rank: '#6',
-        listeners: '9.2M',
-        hits: [
-            { title: 'Rush', album: '19 & Dangerous', duration: '3:05', cover: 'https://images.unsplash.com/photo-1520529277867-dbf8c5e0b330?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Bloody Samaritan', album: '19 & Dangerous', duration: '3:07', cover: 'https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=100&auto=format&fit=crop' }
-        ]
+        country: '🇨🇲 Cameroon'
     },
-    // Best Newcomer (Category 4)
     {
         id: 7,
-        categoryId: 4,
-        name: 'Asake',
-        song: 'LONELY AT THE TOP',
+        categoryId: 1,
+        name: 'Nguebo',
+        song: 'Le Saint Graal',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop',
-        tag: 'Étoile Montante',
-        description: 'La sensation de l\'année avec un mélange unique de Fuji et d\'Afrobeats.',
-        bio: 'Ahmed Ololade, alias Asake, est un chanteur et auteur-compositeur nigérian.',
-        genre: 'AFRO-FUJI',
-        country: '🇳🇬 Nigeria',
-        rank: '#7',
-        listeners: '7.8M',
-        hits: [
-            { title: 'Lonely At The Top', album: 'Work of Art', duration: '2:37', cover: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Sungba', album: 'Ololade Asake', duration: '3:00', cover: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=100&auto=format&fit=crop' }
-        ]
+        image: '/assets/nominees/album_of_the_year/Le_Saint_Graal_Nguebo.jpg',
+        tag: null,
+        description: 'Nominee in category 1',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
     },
     {
         id: 8,
-        categoryId: 4,
-        name: 'Seyi Vibez',
-        song: 'CHANCE',
+        categoryId: 1,
+        name: 'Phillbill',
+        song: 'The Soundman',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop',
-        description: 'Sensation Street-pop apportant une nouvelle énergie à la scène musicale nigériane.',
-        bio: 'Oluwaloseyi Akorede Balogun, connu sous le nom de Seyi Vibez, est un chanteur nigérian.',
-        genre: 'STREET-POP',
-        country: '🇳🇬 Nigeria',
-        rank: '#12',
-        listeners: '4.5M',
-        hits: [
-            { title: 'Chance', album: 'Billion Dollar Baby', duration: '2:45', cover: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=100&auto=format&fit=crop' }
-        ]
+        image: '/assets/nominees/album_of_the_year/The_Soundman_Phillbill.jpg',
+        tag: null,
+        description: 'Nominee in category 1',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
     },
-    // Song of the Year (Category 5)
     {
         id: 9,
-        categoryId: 5,
-        name: 'Rema',
-        song: 'CALM DOWN',
+        categoryId: 1,
+        name: 'Lady Ponce',
+        song: 'Legende',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop',
-        tag: 'Succès Mondial',
-        description: 'La plus grande chanson africaine de l\'histoire, battant des records sur tous les continents.',
-        bio: 'Divine Ikubor, connu sous le nom de Rema, est un chanteur et rappeur nigérian.',
-        genre: 'AFRO-RAVE',
-        country: '🇳🇬 Nigeria',
-        rank: '#1',
-        listeners: '35.4M',
-        hits: [
-            { title: 'Calm Down', album: 'Rave & Roses', duration: '3:39', cover: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=100&auto=format&fit=crop' },
-            { title: 'Soundgasm', album: 'Rave & Roses', duration: '3:24', cover: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=100&auto=format&fit=crop' }
-        ]
+        image: '/assets/nominees/album_of_the_year/legende_lady_ponce.jpg',
+        tag: null,
+        description: 'Nominee in category 1',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
     },
-    // Album of the Year (Category 6)
     {
         id: 10,
-        categoryId: 6,
-        name: 'Olamide',
-        song: 'UNRULY',
+        categoryId: 1,
+        name: 'Locko',
+        song: 'Purple Love',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop',
-        description: 'A masterpiece from the legend of street-hop, showcasing versatility and growth.',
-        bio: 'Olamide Gbenga Adedeji, known professionally as Olamide, is a Nigerian rapper, singer and songwriter. He is one of the most influential artists in Africa.',
-        genre: 'HIP-HOP',
-        country: '🇳🇬 Nigeria',
-        rank: '#8',
-        listeners: '6.2M',
-        hits: [
-            { title: 'Jinja', album: 'Unruly', duration: '3:12', cover: 'https://images.unsplash.com/photo-1459749411177-042180ce673c?q=80&w=100&auto=format&fit=crop' }
-        ]
+        image: '/assets/nominees/album_of_the_year/purple_Love_Locko.jpg',
+        tag: null,
+        description: 'Nominee in category 1',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
     },
-    // Best Group / Duo (Category 7)
     {
         id: 11,
-        categoryId: 7,
-        name: 'Sauti Sol',
-        song: 'MIDNIGHT TRAIN',
+        categoryId: 2,
+        name: 'King Luca',
+        song: 'Fragile',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=1000&auto=format&fit=crop',
-        description: 'Kenya\'s finest group continues to deliver world-class harmonies and production.',
-        bio: 'Sauti Sol is a Kenyan afro-pop band formed in Nairobi by vocalists Bien-Aimé Baraza, Willis Chimano and Savara Mudigi in 2005.',
+        image: '/assets/nominees/song_of_the_year/Fragile_King_Luca.jpg',
+        tag: null,
+        description: 'Nominee in category 2',
         genre: 'AFRO-POP',
-        country: '🇰🇪 Kenya',
-        rank: '#10',
-        listeners: '2.1M',
-        hits: [
-            { title: 'Suzanna', album: 'Midnight Train', duration: '3:50', cover: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=100&auto=format&fit=crop' }
-        ]
+        country: '🇨🇲 Cameroon'
     },
-    // Best Music Video (Category 8)
     {
         id: 12,
-        categoryId: 8,
-        name: 'Blaqbonez',
-        song: 'LIKE ICE SPICE',
+        categoryId: 2,
+        name: 'Bad Nova',
+        song: 'Hala Madrid',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop',
-        description: 'Creative and visually stunning direction that pushes the boundaries of African music videos.',
-        bio: 'Emeka Akumefule, known professionally as Blaqbonez, is a Nigerian rapper signed to Chocolate City.',
-        genre: 'HIP-HOP',
-        country: '🇳🇬 Nigeria',
-        rank: '#15',
-        listeners: '1.8M',
-        hits: [
-            { title: 'Like Ice Spice', album: 'Emeka Must Shine', duration: '2:30', cover: 'https://images.unsplash.com/photo-1520529277867-dbf8c5e0b330?q=80&w=100&auto=format&fit=crop' }
-        ]
+        image: '/assets/nominees/song_of_the_year/Hala_Madrid_Bad_Nova.jpg',
+        tag: null,
+        description: 'Nominee in category 2',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
     },
-    // Producer of the Year (Category 9)
     {
         id: 13,
-        categoryId: 9,
-        name: 'SarZ',
-        song: 'HAPPINESS',
+        categoryId: 2,
+        name: 'Lady Ponce',
+        song: 'Je veux danser',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1000&auto=format&fit=crop',
-        description: 'The architect of modern Afrobeats sound, consistently delivering hits.',
-        bio: 'Osabuohien Osaretin, better known by his stage name Sarz, is a Nigerian record producer and musician.',
-        genre: 'PRODUCER',
-        country: '🇳🇬 Nigeria',
-        rank: '#1',
-        listeners: '5.4M',
-        hits: [
-            { title: 'Happiness', album: 'Sarz Alone', duration: '3:00', cover: 'https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=100&auto=format&fit=crop' }
-        ]
+        image: '/assets/nominees/song_of_the_year/Je_veux_danser_Lady_Ponce.jpg',
+        tag: null,
+        description: 'Nominee in category 2',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
     },
-    // Best Collaboration (Category 10)
     {
         id: 14,
-        categoryId: 10,
-        name: 'Victony & Tempoe',
-        song: 'SOWETO',
+        categoryId: 2,
+        name: 'Cysoul',
+        song: 'Koulos',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1000&auto=format&fit=crop',
-        description: 'A perfect blend of vocals and production that took the world by storm.',
-        bio: 'Anthony Victor, professionally known as Victony, is a Nigerian singer, songwriter and rapper.',
+        image: '/assets/nominees/song_of_the_year/Koulos_Cysoul.jpg',
+        tag: null,
+        description: 'Nominee in category 2',
         genre: 'AFRO-POP',
-        country: '🇳🇬 Nigeria',
-        rank: '#9',
-        listeners: '6.5M',
-        hits: [
-            { title: 'Soweto', album: 'Outlaw', duration: '2:28', cover: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=100&auto=format&fit=crop' }
-        ]
+        country: '🇨🇲 Cameroon'
     },
-    // Best Live Performance (Category 11)
     {
         id: 15,
-        categoryId: 11,
-        name: 'Diamond Platnumz',
-        song: 'YATAPITA',
+        categoryId: 2,
+        name: 'La Chacala ft Yendel',
+        song: 'La Vie du Poulet',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1000&auto=format&fit=crop',
-        description: 'Unmatched stage presence and energy from the King of Bongo Flava.',
-        bio: 'Nasibu Abdul Juma Issack, popularly known by his stage name Diamond Platnumz, is a Tanzanian bongo flava recording artist.',
-        genre: 'BONGO FLAVA',
-        country: '🇹🇿 Tanzania',
-        rank: '#1',
-        listeners: '8.2M',
-        hits: [
-            { title: 'Yatapita', album: 'Single', duration: '4:15', cover: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=100&auto=format&fit=crop' }
-        ]
+        image: '/assets/nominees/song_of_the_year/La_Vie_du_Poulet_La_Chacala_ft_Yendel.jpg',
+        tag: null,
+        description: 'Nominee in category 2',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
     },
-    // Best Afrobeat Artist (Category 12)
     {
         id: 16,
-        categoryId: 12,
-        name: 'Ckay',
-        song: 'LOVE NWANTITI',
+        categoryId: 2,
+        name: 'Tchakala VIP',
+        song: 'Lo Gout',
         votes: '0',
-        image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop',
-        description: 'The emo-afrobeats pioneer who took the sound to every corner of the globe.',
-        bio: 'Chukwuka Ekweani, better known by his stage name CKay, is a Nigerian singer-songwriter and record producer.',
-        genre: 'EMO-AFROBEATS',
-        country: '🇳🇬 Nigeria',
-        rank: '#5',
-        listeners: '22.1M',
-        hits: [
-            { title: 'Love Nwantiti', album: 'CKay the First', duration: '2:26', cover: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=100&auto=format&fit=crop' }
-        ]
-    }
+        image: '/assets/nominees/song_of_the_year/Lo_Gout_Tchakala_VIP.jpg',
+        tag: null,
+        description: 'Nominee in category 2',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 17,
+        categoryId: 2,
+        name: 'Beri Boys Club',
+        song: 'On fonctionne',
+        votes: '0',
+        image: '/assets/nominees/song_of_the_year/On_fonctionne_Beri_Boys_Club.jpg',
+        tag: null,
+        description: 'Nominee in category 2',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 18,
+        categoryId: 2,
+        name: 'Kocee ft KS Bloom',
+        song: 'Stranger',
+        votes: '0',
+        image: '/assets/nominees/song_of_the_year/Stranger_Kocee_ft_KS_Bloom.jpg',
+        tag: null,
+        description: 'Nominee in category 2',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 19,
+        categoryId: 2,
+        name: 'Blacky Star',
+        song: 'Tu le sera',
+        votes: '0',
+        image: '/assets/nominees/song_of_the_year/Tu_le_sera_Blacky_Star.jpg',
+        tag: null,
+        description: 'Nominee in category 2',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 20,
+        categoryId: 3,
+        name: 'Kem\'s On The Beatz',
+        song: 'Hala Madrid',
+        votes: '0',
+        image: '/assets/nominees/record_of_the_year/Hala_Madrid_Kem\'s_On_The_Beatz.jpg',
+        tag: null,
+        description: 'Nominee in category 3',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 21,
+        categoryId: 3,
+        name: 'Kash Maker',
+        song: 'Je veux danser',
+        votes: '0',
+        image: '/assets/nominees/record_of_the_year/Je_veux_danser_Kash_Maker.jpg',
+        tag: null,
+        description: 'Nominee in category 3',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 22,
+        categoryId: 3,
+        name: 'SMJ Abega',
+        song: 'La Vie du Poulet',
+        votes: '0',
+        image: '/assets/nominees/record_of_the_year/La_Vie_du_Poulet_SMJ_Abega.jpg',
+        tag: null,
+        description: 'Nominee in category 3',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 23,
+        categoryId: 3,
+        name: 'LB on the Crack ft Daniel wifi',
+        song: 'Leve-tio',
+        votes: '0',
+        image: '/assets/nominees/record_of_the_year/Leve-tio_LB_on_the_Crack_ft_Daniel_wifi.jpg',
+        tag: null,
+        description: 'Nominee in category 3',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 24,
+        categoryId: 3,
+        name: 'Tchakap by Zeus',
+        song: 'Lo Gout',
+        votes: '0',
+        image: '/assets/nominees/record_of_the_year/Lo_Gout_Tchakap_by_Zeus.jpg',
+        tag: null,
+        description: 'Nominee in category 3',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 25,
+        categoryId: 3,
+        name: 'Ludovic Tchouate',
+        song: 'On fonctionne',
+        votes: '0',
+        image: '/assets/nominees/record_of_the_year/On_fonctionne_Ludovic_Tchouate.jpg',
+        tag: null,
+        description: 'Nominee in category 3',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 26,
+        categoryId: 3,
+        name: 'Smash Laser',
+        song: 'Stranger',
+        votes: '0',
+        image: '/assets/nominees/record_of_the_year/Stranger_Smash_Laser.jpg',
+        tag: null,
+        description: 'Nominee in category 3',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 27,
+        categoryId: 3,
+        name: 'Fento Solo',
+        song: 'Tu le seras',
+        votes: '0',
+        image: '/assets/nominees/record_of_the_year/Tu_le_seras_Fento_Solo.jpg',
+        tag: null,
+        description: 'Nominee in category 3',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 28,
+        categoryId: 4,
+        name: 'Abbo Bayero',
+        song: 'Abbo Bayero',
+        votes: '0',
+        image: '/assets/nominees/best_new_artist/Abbo_Bayero.jpg',
+        tag: null,
+        description: 'Nominee in category 4',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 29,
+        categoryId: 4,
+        name: 'Beri Boys Club',
+        song: 'Beri Boys Club',
+        votes: '0',
+        image: '/assets/nominees/best_new_artist/Beri_Boys_Club.jpg',
+        tag: null,
+        description: 'Nominee in category 4',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 30,
+        categoryId: 4,
+        name: 'Brayan M',
+        song: 'Brayan M',
+        votes: '0',
+        image: '/assets/nominees/best_new_artist/Brayan_M.jpg',
+        tag: null,
+        description: 'Nominee in category 4',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 31,
+        categoryId: 4,
+        name: 'Cabaraiz',
+        song: 'Cabaraiz',
+        votes: '0',
+        image: '/assets/nominees/best_new_artist/Cabaraiz.jpg',
+        tag: null,
+        description: 'Nominee in category 4',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 32,
+        categoryId: 4,
+        name: 'Dice OMG',
+        song: 'Dice OMG',
+        votes: '0',
+        image: '/assets/nominees/best_new_artist/Dice_OMG.jpg',
+        tag: null,
+        description: 'Nominee in category 4',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 33,
+        categoryId: 4,
+        name: 'Ebanga',
+        song: 'Ebanga',
+        votes: '0',
+        image: '/assets/nominees/best_new_artist/Ebanga.jpg',
+        tag: null,
+        description: 'Nominee in category 4',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 34,
+        categoryId: 4,
+        name: 'Genie Solo',
+        song: 'Genie Solo',
+        votes: '0',
+        image: '/assets/nominees/best_new_artist/Genie_Solo.jpg',
+        tag: null,
+        description: 'Nominee in category 4',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 35,
+        categoryId: 4,
+        name: 'King Luca',
+        song: 'King Luca',
+        votes: '0',
+        image: '/assets/nominees/best_new_artist/King_Luca.jpg',
+        tag: null,
+        description: 'Nominee in category 4',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 36,
+        categoryId: 4,
+        name: 'Vidin',
+        song: 'Vidin',
+        votes: '0',
+        image: '/assets/nominees/best_new_artist/Vidin.jpg',
+        tag: null,
+        description: 'Nominee in category 4',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 37,
+        categoryId: 4,
+        name: 'Wizdom Og',
+        song: 'Wizdom Og',
+        votes: '0',
+        image: '/assets/nominees/best_new_artist/Wizdom_Og.jpg',
+        tag: null,
+        description: 'Nominee in category 4',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 38,
+        categoryId: 5,
+        name: 'Adah Akenji',
+        song: 'Ennemies',
+        votes: '0',
+        image: '/assets/nominees/best_music_video/Ennemies_Adah_Akenji.jpg',
+        tag: null,
+        description: 'Nominee in category 5',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 39,
+        categoryId: 5,
+        name: 'H\'arts stories',
+        song: 'Hebi',
+        votes: '0',
+        image: '/assets/nominees/best_music_video/Hebi_H\'arts_stories.jpg',
+        tag: null,
+        description: 'Nominee in category 5',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 40,
+        categoryId: 5,
+        name: 'Adah Akenji',
+        song: 'Koulos',
+        votes: '0',
+        image: '/assets/nominees/best_music_video/Koulos_Adah_Akenji.jpg',
+        tag: null,
+        description: 'Nominee in category 5',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 41,
+        categoryId: 5,
+        name: 'Adah Akenji',
+        song: 'Le Temps',
+        votes: '0',
+        image: '/assets/nominees/best_music_video/Le_Temps_Adah_Akenji.jpg',
+        tag: null,
+        description: 'Nominee in category 5',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 42,
+        categoryId: 5,
+        name: 'Bushboy Films',
+        song: 'Stranger',
+        votes: '0',
+        image: '/assets/nominees/best_music_video/Stranger_Bushboy_Films.jpg',
+        tag: null,
+        description: 'Nominee in category 5',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
+    {
+        id: 43,
+        categoryId: 5,
+        name: 'Ndukong',
+        song: 'Un peu un peu',
+        votes: '0',
+        image: '/assets/nominees/best_music_video/Un_peu_un_peu_Ndukong.jpg',
+        tag: null,
+        description: 'Nominee in category 5',
+        genre: 'AFRO-POP',
+        country: '🇨🇲 Cameroon'
+    },
 ];
 
 export const standings = [
-    { id: 1, name: 'Burna Boy', votes: '0', rank: 1, trend: 'up', image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1000&auto=format&fit=crop' },
-    { id: 2, name: 'Wizkid', votes: '0', rank: 2, trend: 'down', image: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=1000&auto=format&fit=crop' },
-    { id: 3, name: 'Davido', votes: '0', rank: 3, trend: 'up', image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop' },
-    { id: 4, name: 'Tems', votes: '0', rank: 4, trend: 'stable', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop' },
+    { id: 1, name: 'Mr Leo', votes: '0', rank: 1, trend: 'up', image: '/assets/nominees/album_of_the_year/Coeur_de_Lion_Mr_Leo.jpg' },
+    { id: 2, name: 'Beri Boys Club', votes: '0', rank: 2, trend: 'down', image: '/assets/nominees/album_of_the_year/Deluxe_Vol_1_Beri_Boys_Club.jpg' },
+    { id: 3, name: 'Lucky+2', votes: '0', rank: 3, trend: 'up', image: '/assets/nominees/album_of_the_year/Ecouralors_Lucky+2.jpg' },
+    { id: 4, name: 'Krys M', votes: '0', rank: 4, trend: 'stable', image: '/assets/nominees/album_of_the_year/Empreinte_krys_M.jpg' },
 ];
 
 export const winners = [
