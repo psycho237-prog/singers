@@ -7,11 +7,8 @@ import {
     DollarSign,
     Clock,
     Search,
-    Filter,
-    Download,
     Lock,
     ArrowRight,
-    ChevronLeft,
     CheckCircle,
     XCircle,
     AlertCircle,
@@ -53,7 +50,7 @@ const Admin = () => {
         return () => clearInterval(timer);
     }, []);
 
-    const verifyToken = async (token) => {
+    const verifyToken = async (_token) => {
         try {
             const result = await api.verifyToken();
             if (result.valid) {
@@ -62,7 +59,7 @@ const Admin = () => {
             } else {
                 localStorage.removeItem('adminToken');
             }
-        } catch (err) {
+        } catch (_err) {
             localStorage.removeItem('adminToken');
         }
     };
