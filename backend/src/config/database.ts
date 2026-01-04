@@ -48,11 +48,11 @@ export const mockData: {
     transactions: Transaction[];
 } = {
     categories: [
-        { id: 1, title: 'Album of The Year', nominees_count: '0 Nommés', image_url: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=1000', featured: true },
-        { id: 2, title: 'Song of The Year', nominees_count: '0 Nommés', image_url: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000', featured: false },
-        { id: 3, title: 'Record of The Year', nominees_count: '0 Nommés', image_url: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=1000', featured: false },
-        { id: 4, title: 'Best New Artist', nominees_count: '0 Nommés', image_url: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1000', featured: false },
-        { id: 5, title: 'Best Music Video', nominees_count: '0 Nommés', image_url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000', featured: false },
+        { id: 1, title: 'Album of The Year', nominees_count: '10 Nommés', image_url: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=1000', featured: true },
+        { id: 2, title: 'Song of The Year', nominees_count: '9 Nommés', image_url: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000', featured: false },
+        { id: 3, title: 'Record of The Year', nominees_count: '8 Nommés', image_url: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=1000', featured: false },
+        { id: 4, title: 'Best New Artist', nominees_count: '10 Nommés', image_url: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1000', featured: false },
+        { id: 5, title: 'Best Music Video', nominees_count: '6 Nommés', image_url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000', featured: false },
         { id: 6, title: 'Producer of The Year', nominees_count: '0 Nommés', image_url: 'https://images.unsplash.com/photo-1514525253361-bee871871771?q=80&w=1000', featured: false },
         { id: 7, title: 'Best Choregraphy in a Music Video', nominees_count: '0 Nommés', image_url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000', featured: false },
         { id: 8, title: 'Best Art Direction in a Music Video', nominees_count: '0 Nommés', image_url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000', featured: false },
